@@ -10,6 +10,7 @@ dependencies = ["datasets"]
 
 [project.optional-dependencies]
 dev = ["pytest"]
+retrieval = ["numpy", "rank_bm25", "faiss-cpu", "sentence-transformers"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
