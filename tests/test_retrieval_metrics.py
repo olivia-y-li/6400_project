@@ -48,3 +48,24 @@ def test_bm25_ranks_matching_chunk_first():
           chunk("c", "Pizza and pasta are Italian foods.")]
     assert BM25Retriever(cs).search("what is the capital of Norway", 2)[0] == "b"
     assert tokenize("Hello, World!") == ["hello", "world"]
+
+
+def test_bootstrap_ci_and_failures():
+    from rag.metrics import bootstrap_ci, failure_breakdown
+
+    per_q = [{"recall": 1.0, "complete_recall": 1.0, "mrr": 1.0},
+             {"recall": 0.5, "complete_recall": 0.0, "mrr": 0.5},
+             {"recall": 0.0, "complete_recall": 0.0, "mrr": 0.0}] * 20
+    ci = bootstrap_ci(per_q, n_boot=200)
+    for m, (lo, hi) in ci.items():
+        assert lo <= sum(p[m] for p in per_q) / len(per_q) <= hi
+    assert ci == bootstrap_ci(per_q, n_boot=200)  # seeded
+    assert failure_breakdown(per_q) == {"complete": 20, "partial": 20, "miss": 20}
+
+
+def test_paired_counts():
+    from rag.report import paired
+
+    a = [{"complete_recall": 1.0}, {"complete_recall": 0.0}, {"complete_recall": 1.0}]
+    b = [{"complete_recall": 0.0}, {"complete_recall": 0.0}, {"complete_recall": 1.0}]
+    assert paired(a, b) == {"a_better": 1, "b_better": 0, "tie": 2}
