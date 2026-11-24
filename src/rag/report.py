@@ -56,26 +56,30 @@ def run(data_dir: str | Path, out_dir: str | Path, k: int = 5,
     (out_dir / "report.json").write_text(json.dumps(
         {"k": k, "min_overlap": min_overlap, "results": results, "comparison": comparison,
          "per_question": {key: d for key, (_, d) in per_q_all.items()}}, indent=1))
-    (out_dir / "report.md").write_text(to_markdown(results, comparison, k, min_overlap))
+    (out_dir / "report.md").write_text(to_markdown(results, comparison, k, min_overlap, data_dir.name))
     return {"results": results, "comparison": comparison}
 
 
-def to_markdown(results: dict, comparison: dict, k: int, min_overlap: float) -> str:
+def to_markdown(results: dict, comparison: dict, k: int, min_overlap: float,
+                benchmark: str = "") -> str:
     def row(key: str) -> str:
         r = results[key]
         cell = lambda m: f"{r[m]:.3f} [{r['ci95'][m][0]:.3f}, {r['ci95'][m][1]:.3f}]"
         return f"| {key} | {cell('recall')} | {cell('complete_recall')} | {cell('mrr')} |"
 
     head = f"| variant/split | Recall@{k} | Complete Recall@{k} | MRR@{k} |\n|---|---|---|---|\n"
-    lines = [f"# HotpotQA retrieval results (k={k}, min_overlap={min_overlap})\n",
+    lines = [f"# {benchmark} retrieval results (k={k}, min_overlap={min_overlap})\n",
              "Mean [95% bootstrap CI over questions]. Report the eval rows; dev is for choosing variants.\n",
-             head + "\n".join(row(k_) for k_ in results), "\n## By question type (eval, Complete Recall)\n",
-             "| variant | bridge | comparison |\n|---|---|---|"]
-    for key, r in results.items():
-        if key.endswith("/eval"):
-            bt = r["by_qtype"]
-            lines.append(f"| {key[:-5]} | {bt['bridge']['complete_recall']:.3f} (n={bt['bridge']['n']}) "
-                         f"| {bt['comparison']['complete_recall']:.3f} (n={bt['comparison']['n']}) |")
+             head + "\n".join(row(k_) for k_ in results)]
+    qtypes = sorted({t for r in results.values() for t in r["by_qtype"]})
+    if qtypes:
+        lines += ["\n## By question type (eval, Complete Recall)\n",
+                  "| variant | " + " | ".join(qtypes) + " |\n|---|" + "---|" * len(qtypes)]
+        for key, r in results.items():
+            if key.endswith("/eval"):
+                lines.append(f"| {key[:-5]} | " + " | ".join(
+                    f"{r['by_qtype'][t]['complete_recall']:.3f} (n={r['by_qtype'][t]['n']})"
+                    for t in qtypes) + " |")
     lines += ["\n## Failure breakdown (eval)\n", "| variant | complete | partial | miss |\n|---|---|---|---|"]
     for key, r in results.items():
         if key.endswith("/eval"):

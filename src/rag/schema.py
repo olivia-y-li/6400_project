@@ -81,7 +81,8 @@ class Chunk:
     text: str  # == section.text[start:end]
     start: int
     end: int
-    unit_coverage: dict[str, float] = field(default_factory=dict)  # only units with > 0
+    # unit_id -> chars of the unit in this chunk / min(unit length, chunk size); only units with > 0
+    unit_coverage: dict[str, float] = field(default_factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
         return asdict(self)

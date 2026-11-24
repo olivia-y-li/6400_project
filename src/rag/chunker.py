@@ -36,7 +36,7 @@ def chunk_section(
                 text=text[start:end],
                 start=start,
                 end=end,
-                unit_coverage=_coverage(section, start, end),
+                unit_coverage=_coverage(section, start, end, size),
             )
         )
         if end == len(text):  # last chunk ends exactly at len(text); no redundant tail
@@ -45,7 +45,14 @@ def chunk_section(
     return chunks
 
 
-def _coverage(section: Section, start: int, end: int) -> dict[str, float]:
+def _coverage(section: Section, start: int, end: int, size: int = CHUNK_SIZE) -> dict[str, float]:
+    """unit_id -> chars of the unit inside [start, end), over min(unit length, size).
+
+    For units that fit in one window this is the plain fraction of the unit covered.
+    A unit longer than a window can never be fully covered by one chunk, so it is
+    measured against the most a single chunk could hold; otherwise a min_overlap of
+    0.5 would make paragraphs over 2 * size characters impossible to retrieve.
+    """
     cov: dict[str, float] = {}
     for u in section.units:  # units are in text order
         if u.start >= end:
@@ -55,7 +62,7 @@ def _coverage(section: Section, start: int, end: int) -> dict[str, float]:
             continue
         inter = min(end, u.end) - max(start, u.start)
         if inter > 0:
-            cov[u.unit_id] = inter / length
+            cov[u.unit_id] = inter / min(length, size)
     return cov
 
 
