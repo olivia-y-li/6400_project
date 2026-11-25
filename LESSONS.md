@@ -48,3 +48,19 @@ Baseline Recall@5 on the pooled 313-paper corpus is 0.18 (BM25) and 0.15 (dense)
 restricted to each question's own paper: Recall@5 rises to 0.50 and Complete Recall@5 to 0.46.
 QASPER questions often do not name their paper ("How big is the dataset?"), so a pooled corpus
 leaves them ambiguous. Adding the paper title to the chunk text did not help either retriever.
+
+## 2026-11-25: Hybrid (RRF) and cross-encoder rerank
+Hybrid takes the top 50 from BM25 and from dense and fuses them with RRF (constant 60);
+Hybrid + Rerank rescores the fused top 50 with `cross-encoder/ms-marco-MiniLM-L-6-v2`, run on
+CPU like the dense model, and keeps 5. The cross-encoder reads the chunk text as stored, with
+no title prefix, so all systems see identical chunks. Pool size and RRF constant were fixed in
+advance and not tuned.
+- HotpotQA (eval, Complete Recall@5): BM25 0.416, dense 0.488, hybrid 0.506, hybrid + rerank
+  0.662. Hybrid over dense is NOT significant (+0.018, p = 0.36); rerank over hybrid is
+  (+0.156, p < 0.001) and fixes bridge questions most (0.462 -> 0.606; comparison 0.703 -> 0.912).
+- QASPER (eval, Complete Recall@5): BM25 0.168, dense 0.134, hybrid 0.204, hybrid + rerank
+  0.250. Here hybrid over dense is significant (+0.070, p < 0.001), and dense is slightly worse
+  than BM25 (-0.034, p = 0.044).
+- Cost: scoring 50 chunk pairs per question on CPU made the full report (both splits, four
+  systems) take about 7 minutes per benchmark. Latency per stage is logged separately in the
+  latency/cost step.

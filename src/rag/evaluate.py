@@ -7,7 +7,7 @@ from pathlib import Path
 
 from .chunker import MIN_OVERLAP
 from .metrics import aggregate, bootstrap_ci, failure_breakdown, score_question
-from .retrieval import make_retriever
+from .retrieval import SYSTEMS, make_retriever
 from .schema import Chunk, Question, read_jsonl
 
 
@@ -60,7 +60,7 @@ def evaluate(data_dir: str | Path, retriever: str, k: int = 5, split: str = "eva
 def main(argv: list[str] | None = None) -> None:
     p = argparse.ArgumentParser(prog="rag.evaluate")
     p.add_argument("--data", required=True)
-    p.add_argument("--retriever", choices=["bm25", "dense"], required=True)
+    p.add_argument("--retriever", choices=list(SYSTEMS), required=True)
     p.add_argument("--k", type=int, default=5)
     p.add_argument("--split", choices=["eval", "dev"], default="eval")
     p.add_argument("--min-overlap", type=float, default=MIN_OVERLAP)

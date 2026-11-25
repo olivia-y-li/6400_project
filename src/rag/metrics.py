@@ -59,3 +59,26 @@ def failure_breakdown(per_question: Sequence[Mapping[str, float]]) -> dict[str, 
     for p in per_question:
         out["complete" if p["complete_recall"] else "partial" if p["recall"] > 0 else "miss"] += 1
     return out
+
+
+def paired_bootstrap(a: Sequence[Mapping[str, float]], b: Sequence[Mapping[str, float]],
+                     metric: str, n_boot: int = 10000, seed: int = 6400) -> dict[str, float]:
+    """Paired bootstrap of mean(b) - mean(a) over the same questions.
+
+    Returns the observed difference, its 95% percentile CI and a two-sided p-value
+    (twice the smaller tail share of resampled differences on either side of zero).
+    """
+    if len(a) != len(b):
+        raise ValueError("systems must be scored on the same questions")
+    diffs = [y[metric] - x[metric] for x, y in zip(a, b)]
+    n = len(diffs)
+    rng = random.Random(seed)
+    boots = sorted(sum(diffs[rng.randrange(n)] for _ in range(n)) / n for _ in range(n_boot))
+    le0 = sum(d <= 0 for d in boots) / n_boot
+    ge0 = sum(d >= 0 for d in boots) / n_boot
+    return {
+        "diff": sum(diffs) / n,
+        "ci95_low": boots[int(n_boot * 0.025)],
+        "ci95_high": boots[int(n_boot * 0.975) - 1],
+        "p": min(1.0, 2 * min(le0, ge0)),
+    }

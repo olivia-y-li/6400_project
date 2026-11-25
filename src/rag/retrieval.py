@@ -68,9 +68,93 @@ class DenseRetriever:
         return [self.ids[i] for i in top]
 
 
+POOL = 50  # candidates taken from each retriever, and kept after fusion
+RRF_K = 60
+
+
+def rrf_fuse(rankings: Sequence[Sequence[str]], rrf_k: int = RRF_K) -> list[str]:
+    """Reciprocal Rank Fusion: score(d) = sum over lists of 1 / (rrf_k + rank), rank from 1.
+
+    Ties break on chunk_id so the order is deterministic.
+    """
+    scores: dict[str, float] = {}
+    for ranking in rankings:
+        for rank, chunk_id in enumerate(ranking, 1):
+            scores[chunk_id] = scores.get(chunk_id, 0.0) + 1.0 / (rrf_k + rank)
+    return sorted(scores, key=lambda cid: (-scores[cid], cid))
+
+
+class HybridRetriever:
+    """Top `pool` from BM25 and from dense, fused with RRF."""
+
+    def __init__(self, bm25: Retriever, dense: Retriever, pool: int = POOL,
+                 rrf_k: int = RRF_K) -> None:
+        self.bm25, self.dense, self.pool, self.rrf_k = bm25, dense, pool, rrf_k
+
+    def candidates(self, query: str) -> list[str]:
+        """The fused top `pool` chunk_ids, best first."""
+        fused = rrf_fuse([self.bm25.search(query, self.pool), self.dense.search(query, self.pool)],
+                         self.rrf_k)
+        return fused[: self.pool]
+
+    def search(self, query: str, k: int = 5) -> list[str]:
+        return self.candidates(query)[:k]
+
+
+class RerankRetriever:
+    """Rescore the hybrid's fused top `pool` with a cross-encoder and keep the top k.
+
+    Chunks are scored against the query exactly as stored (no title prefix), so every
+    system sees the same chunk text. `scorer` maps [(query, text), ...] to scores and
+    is injectable for tests; by default the cross-encoder is loaded on first use, on CPU.
+    """
+
+    MODEL = "cross-encoder/ms-marco-MiniLM-L-6-v2"
+
+    def __init__(self, hybrid: HybridRetriever, chunks: Sequence[Chunk], scorer=None,
+                 batch_size: int = 16) -> None:
+        self.hybrid = hybrid
+        self.text = {c.chunk_id: c.text for c in chunks}
+        self.batch_size = batch_size
+        self._scorer = scorer
+
+    @property
+    def scorer(self):
+        if self._scorer is None:
+            from sentence_transformers import CrossEncoder
+
+            model = CrossEncoder(self.MODEL, device="cpu")
+            self._scorer = lambda pairs: model.predict(
+                pairs, batch_size=self.batch_size, show_progress_bar=False)
+        return self._scorer
+
+    def rerank(self, query: str, candidates: Sequence[str], k: int = 5) -> list[str]:
+        scores = self.scorer([(query, self.text[cid]) for cid in candidates])
+        order = np.argsort(-np.asarray(scores, dtype="float64"), kind="stable")  # ties keep fused order
+        return [candidates[i] for i in order[:k]]
+
+    def search(self, query: str, k: int = 5) -> list[str]:
+        return self.rerank(query, self.hybrid.candidates(query), k)
+
+
+SYSTEMS = ("bm25", "dense", "hybrid", "hybrid_rerank")
+
+
+def build_systems(chunks: Sequence[Chunk], names: Sequence[str] = SYSTEMS,
+                  prepend_title: bool = False) -> dict[str, Retriever]:
+    """Build the named systems, sharing one BM25 index and one dense index between them."""
+    unknown = set(names) - set(SYSTEMS)
+    if unknown:
+        raise ValueError(f"unknown retriever(s) {sorted(unknown)}")
+    need_bm25 = bool({"bm25", "hybrid", "hybrid_rerank"} & set(names))
+    need_dense = bool({"dense", "hybrid", "hybrid_rerank"} & set(names))
+    bm25 = BM25Retriever(chunks, prepend_title) if need_bm25 else None
+    dense = DenseRetriever(chunks, prepend_title) if need_dense else None
+    hybrid = HybridRetriever(bm25, dense) if {"hybrid", "hybrid_rerank"} & set(names) else None
+    built = {"bm25": bm25, "dense": dense, "hybrid": hybrid,
+             "hybrid_rerank": RerankRetriever(hybrid, chunks) if hybrid else None}
+    return {n: built[n] for n in names}
+
+
 def make_retriever(name: str, chunks: Sequence[Chunk], prepend_title: bool = False) -> Retriever:
-    if name == "bm25":
-        return BM25Retriever(chunks, prepend_title)
-    if name == "dense":
-        return DenseRetriever(chunks, prepend_title)
-    raise ValueError(f"unknown retriever {name!r}")
+    return build_systems(chunks, [name], prepend_title)[name]

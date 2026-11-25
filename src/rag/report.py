@@ -1,7 +1,7 @@
-"""Run every retriever variant on dev and eval and write one comparison report.
+"""Run every system on dev and eval and write one comparison report.
 
 python -m rag.report --data data/processed/hotpotqa --out data/results/hotpotqa
-Variants are compared on dev; eval is the number to report.
+Dev is for debugging only; report the eval rows.
 """
 from __future__ import annotations
 
@@ -11,17 +11,12 @@ from pathlib import Path
 
 from .chunker import MIN_OVERLAP
 from .evaluate import score_split, summarize
-from .retrieval import make_retriever
+from .metrics import METRICS, paired_bootstrap
+from .retrieval import SYSTEMS, build_systems
 from .schema import Chunk, Question, read_jsonl
 
-VARIANTS = [("bm25", False), ("bm25", True), ("dense", False), ("dense", True)]
 
-
-def name(retriever: str, title: bool) -> str:
-    return retriever + ("+title" if title else "")
-
-
-def paired(a: list[dict], b: list[dict], metric: str = "complete_recall") -> dict[str, int]:
+def wins(a: list[dict], b: list[dict], metric: str = "complete_recall") -> dict[str, int]:
     """Questions where a beats b / b beats a / tie, on one metric."""
     return {
         "a_better": sum(x[metric] > y[metric] for x, y in zip(a, b)),
@@ -30,28 +25,35 @@ def paired(a: list[dict], b: list[dict], metric: str = "complete_recall") -> dic
     }
 
 
-def run(data_dir: str | Path, out_dir: str | Path, k: int = 5,
-        min_overlap: float = MIN_OVERLAP) -> dict:
+def run(data_dir: str | Path, out_dir: str | Path, k: int = 5, min_overlap: float = MIN_OVERLAP,
+        systems: tuple[str, ...] = SYSTEMS, title_ablation: bool = False) -> dict:
     data_dir, out_dir = Path(data_dir), Path(out_dir)
     chunks = list(read_jsonl(data_dir / "chunks.jsonl", Chunk))
     by_id = {c.chunk_id: c for c in chunks}
     splits = {s: list(read_jsonl(data_dir / f"questions_{s}.jsonl", Question))
               for s in ("dev", "eval")}
 
+    retrievers = dict(build_systems(chunks, systems))
+    if title_ablation:  # not one of the five systems; chunk text is prefixed with the title
+        retrievers.update({f"{n}+title": r for n, r in
+                           build_systems(chunks, ["bm25", "dense"], prepend_title=True).items()})
+
     results, per_q_all = {}, {}
-    for retriever, title in VARIANTS:
-        r = make_retriever(retriever, chunks, title)
+    for name, r in retrievers.items():
         for split, qs in splits.items():
             per_q, details = score_split(r, qs, by_id, k, min_overlap)
-            key = f"{name(retriever, title)}/{split}"
-            results[key] = summarize(per_q, qs)
-            per_q_all[key] = (per_q, details)
+            results[f"{name}/{split}"] = summarize(per_q, qs)
+            per_q_all[f"{name}/{split}"] = (per_q, details)
 
-    comparison = {
-        "bm25_vs_dense_eval": paired(per_q_all["bm25/eval"][0], per_q_all["dense/eval"][0]),
-        "title_effect_bm25_eval": paired(per_q_all["bm25/eval"][0], per_q_all["bm25+title/eval"][0]),
-        "title_effect_dense_eval": paired(per_q_all["dense/eval"][0], per_q_all["dense+title/eval"][0]),
-    }
+    # Consecutive systems, in the order given: each is compared with the one before it.
+    comparison = {}
+    for first, second in zip(systems, systems[1:]):
+        a, b = per_q_all[f"{first}/eval"][0], per_q_all[f"{second}/eval"][0]
+        comparison[f"{first} -> {second}"] = {
+            "paired_bootstrap": {m: paired_bootstrap(a, b, m) for m in METRICS},
+            "complete_recall_wins": wins(a, b),
+        }
+
     out_dir.mkdir(parents=True, exist_ok=True)
     (out_dir / "report.json").write_text(json.dumps(
         {"k": k, "min_overlap": min_overlap, "results": results, "comparison": comparison,
@@ -67,27 +69,36 @@ def to_markdown(results: dict, comparison: dict, k: int, min_overlap: float,
         cell = lambda m: f"{r[m]:.3f} [{r['ci95'][m][0]:.3f}, {r['ci95'][m][1]:.3f}]"
         return f"| {key} | {cell('recall')} | {cell('complete_recall')} | {cell('mrr')} |"
 
-    head = f"| variant/split | Recall@{k} | Complete Recall@{k} | MRR@{k} |\n|---|---|---|---|\n"
+    head = f"| system/split | Recall@{k} | Complete Recall@{k} | MRR@{k} |\n|---|---|---|---|\n"
     lines = [f"# {benchmark} retrieval results (k={k}, min_overlap={min_overlap})\n",
-             "Mean [95% bootstrap CI over questions]. Report the eval rows; dev is for choosing variants.\n",
+             "Mean [95% bootstrap CI over questions]. Report the eval rows; dev is for debugging only.\n",
              head + "\n".join(row(k_) for k_ in results)]
     qtypes = sorted({t for r in results.values() for t in r["by_qtype"]})
     if qtypes:
         lines += ["\n## By question type (eval, Complete Recall)\n",
-                  "| variant | " + " | ".join(qtypes) + " |\n|---|" + "---|" * len(qtypes)]
+                  "| system | " + " | ".join(qtypes) + " |\n|---|" + "---|" * len(qtypes)]
         for key, r in results.items():
             if key.endswith("/eval"):
                 lines.append(f"| {key[:-5]} | " + " | ".join(
                     f"{r['by_qtype'][t]['complete_recall']:.3f} (n={r['by_qtype'][t]['n']})"
                     for t in qtypes) + " |")
-    lines += ["\n## Failure breakdown (eval)\n", "| variant | complete | partial | miss |\n|---|---|---|---|"]
+    lines += ["\n## Failure breakdown (eval)\n", "| system | complete | partial | miss |\n|---|---|---|---|"]
     for key, r in results.items():
         if key.endswith("/eval"):
             f = r["failures"]
             lines.append(f"| {key[:-5]} | {f['complete']} | {f['partial']} | {f['miss']} |")
-    lines += ["\n## Paired comparisons on eval (questions where one has the higher Complete Recall)\n"]
-    for k_, v in comparison.items():
-        lines.append(f"- {k_}: first better {v['a_better']}, second better {v['b_better']}, tie {v['tie']}")
+    if comparison:
+        lines += ["\n## Paired bootstrap between consecutive systems (eval)\n",
+                  "Difference in means (second minus first) [95% CI], two-sided p.\n",
+                  "| comparison | metric | difference | p |\n|---|---|---|---|"]
+        for pair, c in comparison.items():
+            for m, v in c["paired_bootstrap"].items():
+                lines.append(f"| {pair} | {m} | {v['diff']:+.3f} [{v['ci95_low']:+.3f}, "
+                             f"{v['ci95_high']:+.3f}] | {v['p']:.4f} |")
+        lines += ["\nQuestions where one system has the higher Complete Recall:\n"]
+        for pair, c in comparison.items():
+            w = c["complete_recall_wins"]
+            lines.append(f"- {pair}: second better {w['b_better']}, first better {w['a_better']}, tie {w['tie']}")
     return "\n".join(lines) + "\n"
 
 
@@ -97,8 +108,10 @@ def main(argv: list[str] | None = None) -> None:
     p.add_argument("--out", required=True)
     p.add_argument("--k", type=int, default=5)
     p.add_argument("--min-overlap", type=float, default=MIN_OVERLAP)
+    p.add_argument("--title-ablation", action="store_true",
+                   help="also run bm25/dense with the page title prefixed (not one of the five systems)")
     a = p.parse_args(argv)
-    run(a.data, a.out, a.k, a.min_overlap)
+    run(a.data, a.out, a.k, a.min_overlap, title_ablation=a.title_ablation)
     print((Path(a.out) / "report.md").read_text())
 
 
