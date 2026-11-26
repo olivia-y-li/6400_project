@@ -1,0 +1,30 @@
+{
+  "system": "bm25",
+  "split": "eval",
+  "n_scored": 500,
+  "n_expected": 500,
+  "error": null,
+  "em": 0.43,
+  "f1": 0.5551622417606288,
+  "em_ci95": [
+    0.386,
+    0.472
+  ],
+  "f1_ci95": [
+    0.5155649131633002,
+    0.5946579574547317
+  ],
+  "pct_with_valid_citation": 92.6,
+  "pct_citing_gold_chunk": 85.6,
+  "n_invalid_citations": 0,
+  "mean_input_tokens": 1745.994,
+  "mean_output_tokens": 76.088,
+  "total_cost_usd": 1.063217,
+  "mean_cost_usd": 0.002126434,
+  "n_cached": 0,
+  "gen_latency_s": {
+    "mean": 0.9639631495354697,
+    "p50": 0.939843500033021,
+    "p95": 1.1275198748335242
+  }
+}

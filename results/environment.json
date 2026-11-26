@@ -1,0 +1,37 @@
+{
+  "recorded": "2026-11-25",
+  "hardware": {
+    "chip": "Apple M5",
+    "cores": "10",
+    "memory_gb": 16.0
+  },
+  "os": "macOS-26.7.1-arm64-arm-64bit",
+  "python": "3.12.6",
+  "libraries": {
+    "rank_bm25": "0.2.2",
+    "sentence-transformers": "6.2.0",
+    "torch": "2.15.0",
+    "transformers": "5.22.1",
+    "numpy": "2.5.4",
+    "datasets": "5.1.0",
+    "anthropic": "2.14.0",
+    "faiss-cpu": "1.15.1"
+  },
+  "models": {
+    "generation_and_decomposition": "claude-haiku-4-5 (Anthropic API; temperature not settable, see LESSONS.md)",
+    "dense_retrieval": "sentence-transformers/all-MiniLM-L6-v2 (CPU, L2-normalized, exact dot product)",
+    "reranker": "cross-encoder/ms-marco-MiniLM-L-6-v2 (CPU)"
+  },
+  "settings": {
+    "seed": 6400,
+    "chunk_size": 1000,
+    "overlap": 100,
+    "k": 5,
+    "min_overlap": 0.5,
+    "rrf_constant": 60,
+    "candidate_pool": 50,
+    "hotpotqa_level": "hard",
+    "n_eval": 500,
+    "n_dev": 50
+  }
+}

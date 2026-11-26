@@ -64,8 +64,8 @@ def test_bootstrap_ci_and_failures():
 
 
 def test_paired_counts():
-    from rag.report import paired
+    from rag.report import wins
 
     a = [{"complete_recall": 1.0}, {"complete_recall": 0.0}, {"complete_recall": 1.0}]
     b = [{"complete_recall": 0.0}, {"complete_recall": 0.0}, {"complete_recall": 1.0}]
-    assert paired(a, b) == {"a_better": 1, "b_better": 0, "tie": 2}
+    assert wins(a, b) == {"a_better": 1, "b_better": 0, "tie": 2}

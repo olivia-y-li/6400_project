@@ -1,0 +1,1816 @@
+{
+ "system": "hybrid_rerank_decomp",
+ "k": 5,
+ "min_overlap": 0.5,
+ "include_original": false,
+ "error": null,
+ "results": {
+  "hybrid_rerank_decomp/dev": {
+   "recall": 0.31,
+   "complete_recall": 0.3,
+   "mrr": 0.22133333333333333,
+   "ci95": {
+    "recall": [
+     0.18,
+     0.43
+    ],
+    "complete_recall": [
+     0.18,
+     0.42
+    ],
+    "mrr": [
+     0.1247,
+     0.3287
+    ]
+   },
+   "failures": {
+    "complete": 15,
+    "partial": 1,
+    "miss": 34
+   },
+   "by_qtype": {},
+   "n_scored": 50,
+   "n_expected": 50,
+   "trace_totals": {
+    "mean_llm_calls": 1.1,
+    "mean_sub_questions": 1.1,
+    "pct_decomposed": 6.0,
+    "mean_candidates": 54.18,
+    "total_cost_usd": 0.078092,
+    "mean_cost_usd": 0.0015618399999999999
+   }
+  }
+ },
+ "per_question": {
+  "hybrid_rerank_decomp/dev": [
+   {
+    "qid": "7748c072e07d6c6db5a34be38b4a5e97ac6d7999",
+    "retrieved": [
+     "qa::1712.00733::sec9::c0",
+     "qa::1712.00733::sec8::c0",
+     "qa::1801.04433::sec12::c2",
+     "qa::1907.12984::sec11::c8",
+     "qa::1912.08084::sec2::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What dataset did they evaluate on?"
+     ],
+     "resolved": [
+      "What dataset did they evaluate on?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 2.385335790924728,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04616591660305858,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.9346346659585834
+     }
+    }
+   },
+   {
+    "qid": "636ac549cf4917c5922cd09a655abf278924c930",
+    "retrieved": [
+     "qa::1601.03313::sec12::c0",
+     "qa::1801.04433::sec12::c2",
+     "qa::1805.11850::sec7::c0",
+     "qa::1805.09960::sec7::c0",
+     "qa::1603.07252::sec8::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How was the experiment evaluated?"
+     ],
+     "resolved": [
+      "How was the experiment evaluated?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1084,
+     "output_tokens": 42,
+     "cost_usd": 0.001294,
+     "live_cost_usd": 0.001294,
+     "stage_latency_s": {
+      "decompose": 2.3858794579282403,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.05090170772746205,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.7259635417722166
+     }
+    }
+   },
+   {
+    "qid": "6df57a21ca875e63fb39adece6a9ace5bb2b2cfa",
+    "retrieved": [
+     "qa::2003.11531::sec11::c2",
+     "qa::1908.05908::sec8::c0",
+     "qa::2003.11531::sec0::c0",
+     "qa::1909.11706::sec1::c0",
+     "qa::1610.09722::sec5::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How does labeling scheme look like?"
+     ],
+     "resolved": [
+      "How does labeling scheme look like?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 2.386178540997207,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04381954204291105,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 2.0964507502503693
+     }
+    }
+   },
+   {
+    "qid": "f6ba0a5cfd5b35219efe5e52b0a5b86ae85c5abd",
+    "retrieved": [
+     "qa::1901.01590::sec6::c2",
+     "qa::1901.01590::sec7::c0",
+     "qa::1602.03483::sec5::c0",
+     "qa::1901.01590::sec6::c1",
+     "qa::1610.00479::sec0::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Who or what are 'they' in this context?",
+      "What is the performance improvement of {1} compared to existing text denoising models?"
+     ],
+     "resolved": [
+      "Who or what are 'they' in this context?",
+      "What is the performance improvement of humans compared to existing text denoising models?"
+     ],
+     "intermediate_answers": {
+      "1": "humans"
+     },
+     "n_candidates": 100,
+     "llm_calls": 2,
+     "input_tokens": 3318,
+     "output_tokens": 132,
+     "cost_usd": 0.003978,
+     "live_cost_usd": 0.003978,
+     "stage_latency_s": {
+      "decompose": 2.5909566250629723,
+      "intermediate_answer": 0.6681140000000596,
+      "retrieval": 0.06656987592577934,
+      "intermediate_rerank": 1.9868412502110004,
+      "final_rerank": 2.781655458267778
+     }
+    }
+   },
+   {
+    "qid": "5a7d1ae6796e09299522ebda7bfcfad312d6d128",
+    "retrieved": [
+     "qa::1810.13414::sec19::c12",
+     "qa::1708.01065::sec1::c2",
+     "qa::1808.07231::sec10::c0",
+     "qa::1910.12203::sec2::c1",
+     "qa::1803.08419::sec3::c2"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What previous proposed methods did they explore?"
+     ],
+     "resolved": [
+      "What previous proposed methods did they explore?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.7653118330053985,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03081904212012887,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.741922500077635
+     }
+    }
+   },
+   {
+    "qid": "63eda2af88c35a507fbbfda0ec1082f58091883a",
+    "retrieved": [
+     "qa::1711.11118::sec1::c0",
+     "qa::1802.03052::sec2::c2",
+     "qa::1706.02427::sec0::c0",
+     "qa::1706.02427::sec1::c1",
+     "qa::1608.01972::sec10::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Do they consider semi-structured webpages?"
+     ],
+     "resolved": [
+      "Do they consider semi-structured webpages?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1088,
+     "output_tokens": 46,
+     "cost_usd": 0.001318,
+     "live_cost_usd": 0.001318,
+     "stage_latency_s": {
+      "decompose": 0.7591845826245844,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.016112124547362328,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.316665833350271
+     }
+    }
+   },
+   {
+    "qid": "713e1c7b0ab17759ba85d7cd2041e387831661df",
+    "retrieved": [
+     "qa::1801.04433::sec12::c2",
+     "qa::1803.02914::sec3::c0",
+     "qa::1703.10152::sec9::c0",
+     "qa::1909.04242::sec4::c0",
+     "qa::1912.10162::sec11::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Did they experiment on this dataset?"
+     ],
+     "resolved": [
+      "Did they experiment on this dataset?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.6714487499557436,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.02052862523123622,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9591193748638034
+     }
+    }
+   },
+   {
+    "qid": "246e924017c48fa1f069361c44133fdf4f0386e1",
+    "retrieved": [
+     "qa::1909.01720::sec6::c0",
+     "qa::1909.01720::sec14::c0",
+     "qa::1909.01720::sec3::c0",
+     "qa::1909.01720::sec1::c3",
+     "qa::1909.01720::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.3333333333333333,
+    "trace": {
+     "sub_questions": [
+      "How is the selected sharing layer trained?"
+     ],
+     "resolved": [
+      "How is the selected sharing layer trained?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.6781651671044528,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.030463790986686945,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4843737911432981
+     }
+    }
+   },
+   {
+    "qid": "c09bceea67273c10a0621da1a83b409f53342fd9",
+    "retrieved": [
+     "qa::1708.07252::sec0::c0",
+     "qa::1809.03391::sec0::c0",
+     "qa::1909.00437::sec23::c0",
+     "qa::1708.07252::sec14::c0",
+     "qa::1809.03391::sec1::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What neural network models were explored?"
+     ],
+     "resolved": [
+      "What neural network models were explored?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.6836322504095733,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.0317614171653986,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.5764152500778437
+     }
+    }
+   },
+   {
+    "qid": "6157567c5614e1954b801431fec680f044e102c6",
+    "retrieved": [
+     "qa::1610.03807::sec4::c1",
+     "qa::1610.03807::sec1::c2",
+     "qa::1610.03807::sec0::c0",
+     "qa::1911.10742::sec10::c1",
+     "qa::1806.07042::sec9::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Was the filtering based on fluency and domain relevance done automatically?"
+     ],
+     "resolved": [
+      "Was the filtering based on fluency and domain relevance done automatically?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1092,
+     "output_tokens": 50,
+     "cost_usd": 0.001342,
+     "live_cost_usd": 0.001342,
+     "stage_latency_s": {
+      "decompose": 0.8205129159614444,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04830650007352233,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.3565607499331236
+     }
+    }
+   },
+   {
+    "qid": "0ef114d24a7a32821967e912dff23c016c4eab41",
+    "retrieved": [
+     "qa::1901.09501::sec0::c1",
+     "qa::2004.02214::sec22::c0",
+     "qa::1901.09501::sec6::c0",
+     "qa::1901.09501::sec10::c0",
+     "qa::1901.09501::sec8::c2"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 0.2,
+    "trace": {
+     "sub_questions": [
+      "Which prior approaches for style transfer do they test with?"
+     ],
+     "resolved": [
+      "Which prior approaches for style transfer do they test with?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1089,
+     "output_tokens": 47,
+     "cost_usd": 0.001324,
+     "live_cost_usd": 0.001324,
+     "stage_latency_s": {
+      "decompose": 0.7495747078210115,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.024878875352442265,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.2685125418938696
+     }
+    }
+   },
+   {
+    "qid": "cb7a00233502c4b7801d34bc95d6d22d79776ae8",
+    "retrieved": [
+     "qa::2002.04815::sec9::c0",
+     "qa::1910.09387::sec1::c2",
+     "qa::1709.06365::sec9::c0",
+     "qa::1906.04236::sec5::c2",
+     "qa::1909.04251::sec10::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What dataset did they use?"
+     ],
+     "resolved": [
+      "What dataset did they use?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1084,
+     "output_tokens": 42,
+     "cost_usd": 0.001294,
+     "live_cost_usd": 0.001294,
+     "stage_latency_s": {
+      "decompose": 0.645758124999702,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.020482792053371668,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1193260829895735
+     }
+    }
+   },
+   {
+    "qid": "6e6d64e2cb7734599890fff3f10c18479756d540",
+    "retrieved": [
+     "qa::1911.10401::sec0::c1",
+     "qa::1912.03010::sec0::c1",
+     "qa::1606.02892::sec13::c1",
+     "qa::1602.03483::sec4::c1",
+     "qa::1903.10548::sec1::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Do they test any neural architecture?"
+     ],
+     "resolved": [
+      "Do they test any neural architecture?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.7486288328655064,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.023008459247648716,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.172915458213538
+     }
+    }
+   },
+   {
+    "qid": "fe6181ab0aecf5bc8c3def843f82e530347d918b",
+    "retrieved": [
+     "qa::2002.09616::sec12::c0",
+     "qa::1711.11118::sec4::c1",
+     "qa::1811.01183::sec8::c2",
+     "qa::1803.06745::sec6::c0",
+     "qa::1911.12237::sec3::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What are the baseline models?"
+     ],
+     "resolved": [
+      "What are the baseline models?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1084,
+     "output_tokens": 42,
+     "cost_usd": 0.001294,
+     "live_cost_usd": 0.001294,
+     "stage_latency_s": {
+      "decompose": 0.6629595411941409,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03042262513190508,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9026496247388422
+     }
+    }
+   },
+   {
+    "qid": "43f43b135109ebd1d2d1f9af979c64ce550b5f0f",
+    "retrieved": [
+     "qa::1803.05160::sec5::c3",
+     "qa::2003.12139::sec5::c0",
+     "qa::1605.05156::sec7::c0",
+     "qa::2003.12139::sec9::c0",
+     "qa::1605.05156::sec7::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What type of classifiers were used?"
+     ],
+     "resolved": [
+      "What type of classifiers were used?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.6337186670862138,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.0167475831694901,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4793439162895083
+     }
+    }
+   },
+   {
+    "qid": "b2dc0c813da92cf13d86528bd32c12286ec9b9cd",
+    "retrieved": [
+     "qa::1605.05156::sec4::c0",
+     "qa::1603.08868::sec3::c0",
+     "qa::1603.08868::sec3::c3",
+     "qa::1603.08868::sec5::c1",
+     "qa::1603.08868::sec0::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How many lexical features are considered?"
+     ],
+     "resolved": [
+      "How many lexical features are considered?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.4980851663276553,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.015091999899595976,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4718786659650505
+     }
+    }
+   },
+   {
+    "qid": "92fc94a4999d1b25a0593904025eb7b8953bb28b",
+    "retrieved": [
+     "qa::1910.03355::sec10::c0",
+     "qa::1907.12984::sec1::c4",
+     "qa::1909.12016::sec13::c0",
+     "qa::1908.06259::sec17::c0",
+     "qa::1910.03355::sec7::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What metric is used to measure translation accuracy?"
+     ],
+     "resolved": [
+      "What metric is used to measure translation accuracy?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.7071225829422474,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04146650014445186,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.405040374957025
+     }
+    }
+   },
+   {
+    "qid": "a24b2269b292fd0ee81d50303d1315383c594382",
+    "retrieved": [
+     "qa::1911.01214::sec7::c2",
+     "qa::1912.08084::sec3::c0",
+     "qa::1912.07076::sec5::c0",
+     "qa::1607.03895::sec3::c0",
+     "qa::1911.01214::sec2::c4"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Which news sources do the transcripts come from?"
+     ],
+     "resolved": [
+      "Which news sources do the transcripts come from?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1088,
+     "output_tokens": 46,
+     "cost_usd": 0.001318,
+     "live_cost_usd": 0.001318,
+     "stage_latency_s": {
+      "decompose": 0.5464033749885857,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.05122812511399388,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.46779412496835
+     }
+    }
+   },
+   {
+    "qid": "e56c1f0e9eabda41f929d0dfd5cfa50edd69fa89",
+    "retrieved": [
+     "qa::1912.11980::sec13::c0",
+     "qa::1912.11980::sec16::c1",
+     "qa::1909.12016::sec11::c0",
+     "qa::1912.11980::sec12::c1",
+     "qa::1912.03010::sec10::c2"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Were any datasets other than WMT used to test the model?"
+     ],
+     "resolved": [
+      "Were any datasets other than WMT used to test the model?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1092,
+     "output_tokens": 50,
+     "cost_usd": 0.001342,
+     "live_cost_usd": 0.001342,
+     "stage_latency_s": {
+      "decompose": 0.7513430421240628,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.06155720818787813,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.0535612092353404
+     }
+    }
+   },
+   {
+    "qid": "2711ae6dd532d136295c95253dbf202e37ecd3e7",
+    "retrieved": [
+     "qa::1909.06708::sec6::c0",
+     "qa::1909.06708::sec9::c2",
+     "qa::1907.12984::sec4::c2",
+     "qa::1712.02555::sec1::c3",
+     "qa::1712.02555::sec1::c1"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "How do you know the word alignments are correct?"
+     ],
+     "resolved": [
+      "How do you know the word alignments are correct?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1089,
+     "output_tokens": 47,
+     "cost_usd": 0.001324,
+     "live_cost_usd": 0.001324,
+     "stage_latency_s": {
+      "decompose": 0.6988270422443748,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.029451332986354828,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.360066708177328
+     }
+    }
+   },
+   {
+    "qid": "fcf9377fc3fce529d4bab1258db3f46b15ae5872",
+    "retrieved": [
+     "qa::1911.09709::sec11::c0",
+     "qa::1911.09709::sec11::c1",
+     "qa::1911.09709::sec15::c1",
+     "qa::1911.09709::sec4::c0",
+     "qa::1911.09709::sec9::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What is a concurrent system?",
+      "What is a modular system?",
+      "According to human evaluation, which works better between {1} and {2}?"
+     ],
+     "resolved": [
+      "What is a concurrent system?",
+      "What is a modular system?",
+      "According to human evaluation, which works better between an encoder-decoder neural network where the encoder is BERT and the decoder is an attentional LSTM with copy and coverage mechanisms and A system that enables human control and interpretability?"
+     ],
+     "intermediate_answers": {
+      "1": "an encoder-decoder neural network where the encoder is BERT and the decoder is an attentional LSTM with copy and coverage mechanisms",
+      "2": "A system that enables human control and interpretability"
+     },
+     "n_candidates": 121,
+     "llm_calls": 3,
+     "input_tokens": 5353,
+     "output_tokens": 232,
+     "cost_usd": 0.006513,
+     "live_cost_usd": 0.006513,
+     "stage_latency_s": {
+      "decompose": 0.9385988330468535,
+      "intermediate_answer": 2.2178502092137933,
+      "retrieval": 0.17104791663587093,
+      "intermediate_rerank": 2.6314834584482014,
+      "final_rerank": 3.382660999894142
+     }
+    }
+   },
+   {
+    "qid": "101d7a355e8bf6d1860917876ee0b9971eae7a2f",
+    "retrieved": [
+     "qa::1606.02601::sec11::c0",
+     "qa::1909.10481::sec23::c0",
+     "qa::1905.00472::sec11::c1",
+     "qa::2003.03131::sec16::c0",
+     "qa::2002.00175::sec13::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Do they report results only for English data?"
+     ],
+     "resolved": [
+      "Do they report results only for English data?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.7308222078718245,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03095724992454052,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.347061667125672
+     }
+    }
+   },
+   {
+    "qid": "4afd4cfcb30433714b135b977baff346323af1e3",
+    "retrieved": [
+     "qa::1803.07828::sec7::c0",
+     "qa::1709.06365::sec9::c0",
+     "qa::1909.01860::sec4::c1",
+     "qa::1906.04236::sec5::c2",
+     "qa::1803.02914::sec3::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What datasets are used in experiments?"
+     ],
+     "resolved": [
+      "What datasets are used in experiments?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.757256583776325,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.030385459307581186,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.5283794580027461
+     }
+    }
+   },
+   {
+    "qid": "da21bcaa8e3a9eadc8a5194fd57ae797e93c3049",
+    "retrieved": [
+     "qa::2004.01970::sec3::c0",
+     "qa::1906.01076::sec8::c0",
+     "qa::1707.02892::sec10::c0",
+     "qa::2004.01970::sec1::c3",
+     "qa::1908.09590::sec14::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What text classification datasets do they evaluate on?"
+     ],
+     "resolved": [
+      "What text classification datasets do they evaluate on?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.8572032498195767,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.02156520914286375,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.8337356657721102
+     }
+    }
+   },
+   {
+    "qid": "67f1b8a9f72e62cd74ec42e9631ef763a9b098c7",
+    "retrieved": [
+     "qa::1908.07888::sec8::c0",
+     "qa::1908.10001::sec7::c0",
+     "qa::1909.05190::sec4::c0",
+     "qa::1909.05190::sec12::c0",
+     "qa::1912.00342::sec2::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.5,
+    "trace": {
+     "sub_questions": [
+      "What intents do they have?"
+     ],
+     "resolved": [
+      "What intents do they have?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.7019624169915915,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.016159916762262583,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4591580000706017
+     }
+    }
+   },
+   {
+    "qid": "87c00edc497274ae6a972c3097818de85b1b384f",
+    "retrieved": [
+     "qa::1909.08250::sec0::c1",
+     "qa::1909.08250::sec3::c1",
+     "qa::1909.08250::sec3::c0",
+     "qa::1909.08250::sec6::c1",
+     "qa::1909.08250::sec5::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.3333333333333333,
+    "trace": {
+     "sub_questions": [
+      "How does sentence construction component work?"
+     ],
+     "resolved": [
+      "How does sentence construction component work?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.6680025411769748,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.025236625224351883,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4054997498169541
+     }
+    }
+   },
+   {
+    "qid": "fc62549a8f0922c09996a119b2b6a8b5e829e989",
+    "retrieved": [
+     "qa::1907.08540::sec6::c3",
+     "qa::1801.04433::sec11::c0",
+     "qa::2004.04478::sec4::c0",
+     "qa::1912.10162::sec6::c1",
+     "qa::1803.08419::sec13::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Which metrics are used for quantitative analysis?"
+     ],
+     "resolved": [
+      "Which metrics are used for quantitative analysis?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.7800300410017371,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.046006042044609785,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.8873607921414077
+     }
+    }
+   },
+   {
+    "qid": "5364fe5f256f1263a939e0a199c3708727ad856a",
+    "retrieved": [
+     "qa::1906.04236::sec4::c1",
+     "qa::1906.04236::sec3::c0",
+     "qa::1906.04236::sec4::c2",
+     "qa::1906.04236::sec1::c2",
+     "qa::1903.02930::sec5::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "How long are the videos?"
+     ],
+     "resolved": [
+      "How long are the videos?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1084,
+     "output_tokens": 42,
+     "cost_usd": 0.001294,
+     "live_cost_usd": 0.001294,
+     "stage_latency_s": {
+      "decompose": 0.6650682906620204,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.016639084089547396,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.6082030828110874
+     }
+    }
+   },
+   {
+    "qid": "643527e94e8eed1e2229915fcf8cd74d769173fc",
+    "retrieved": [
+     "qa::1912.10162::sec6::c1",
+     "qa::1805.04833::sec15::c0",
+     "qa::1707.06875::sec1::c0",
+     "qa::1908.06259::sec27::c0",
+     "qa::1704.04451::sec13::c3"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What are the evaluation metrics used?"
+     ],
+     "resolved": [
+      "What are the evaluation metrics used?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.7159929168410599,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.0190824163146317,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9375969581305981
+     }
+    }
+   },
+   {
+    "qid": "a398c9b061f28543bc77c2951d0dfc5d1bee9e87",
+    "retrieved": [
+     "qa::2002.04815::sec9::c0",
+     "qa::1608.07836::sec8::c1",
+     "qa::1706.04206::sec7::c1",
+     "qa::1909.04251::sec10::c0",
+     "qa::2002.04815::sec8::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Which dataset do they use?"
+     ],
+     "resolved": [
+      "Which dataset do they use?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1084,
+     "output_tokens": 42,
+     "cost_usd": 0.001294,
+     "live_cost_usd": 0.001294,
+     "stage_latency_s": {
+      "decompose": 0.6640187907032669,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.01585616683587432,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9572058343328536
+     }
+    }
+   },
+   {
+    "qid": "d6a815d24c46557827d8aca65d3ffd008ac1bc07",
+    "retrieved": [
+     "qa::1910.10487::sec2::c0",
+     "qa::1910.10487::sec1::c0",
+     "qa::1803.02914::sec0::c0",
+     "qa::1611.02378::sec5::c0",
+     "qa::1611.02378::sec2::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Which movie subtitles dataset did they use?"
+     ],
+     "resolved": [
+      "Which movie subtitles dataset did they use?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1088,
+     "output_tokens": 46,
+     "cost_usd": 0.001318,
+     "live_cost_usd": 0.001318,
+     "stage_latency_s": {
+      "decompose": 0.7378356670960784,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04595258412882686,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.2149664591997862
+     }
+    }
+   },
+   {
+    "qid": "909ecf675f874421eecc926a9f7486475aa1423c",
+    "retrieved": [
+     "qa::1908.07888::sec0::c1",
+     "qa::1908.07888::sec12::c1",
+     "qa::1908.07888::sec12::c0",
+     "qa::1908.07888::sec13::c0",
+     "qa::1908.10001::sec5::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.5,
+    "trace": {
+     "sub_questions": [
+      "How do they use extracted intent to rescore?"
+     ],
+     "resolved": [
+      "How do they use extracted intent to rescore?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1088,
+     "output_tokens": 46,
+     "cost_usd": 0.001318,
+     "live_cost_usd": 0.001318,
+     "stage_latency_s": {
+      "decompose": 0.781244957819581,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03060666611418128,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.8929649172350764
+     }
+    }
+   },
+   {
+    "qid": "740cc392c0c8bfadfe6b3a60c0be635c03e17f2a",
+    "retrieved": [
+     "qa::1803.05160::sec2::c0",
+     "qa::2003.12139::sec1::c0",
+     "qa::1901.05389::sec1::c0",
+     "qa::1804.05253::sec10::c0",
+     "qa::1609.02075::sec2::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What social media platforms are represented?"
+     ],
+     "resolved": [
+      "What social media platforms are represented?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.8055081660859287,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.031111791729927063,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.6093682497739792
+     }
+    }
+   },
+   {
+    "qid": "a6603305f4fd3dd0010ac31243c40999a116537e",
+    "retrieved": [
+     "qa::1903.10548::sec4::c0",
+     "qa::1912.11980::sec17::c0",
+     "qa::1909.13466::sec5::c0",
+     "qa::1910.03177::sec3::c0",
+     "qa::1909.08250::sec3::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Do they encode sentences separately or together?"
+     ],
+     "resolved": [
+      "Do they encode sentences separately or together?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.7210367918014526,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.043376250192523,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1202632091008127
+     }
+    }
+   },
+   {
+    "qid": "07edc082eb86aecef3db5cad2534459c1310d6e8",
+    "retrieved": [
+     "qa::1809.03680::sec8::c0",
+     "qa::1809.03391::sec4::c0",
+     "qa::2002.06854::sec7::c0",
+     "qa::1909.04251::sec9::c0",
+     "qa::1906.01076::sec7::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What baseline is used for this task?"
+     ],
+     "resolved": [
+      "What baseline is used for this task?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.7218581670895219,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.05355216609314084,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9864082080312073
+     }
+    }
+   },
+   {
+    "qid": "441be93e2830cc0fc65afad6959db92754c9f5a8",
+    "retrieved": [
+     "qa::1911.03090::sec8::c1",
+     "qa::1911.03090::sec6::c1",
+     "qa::1911.10401::sec10::c1",
+     "qa::2002.04326::sec9::c1",
+     "qa::1911.03090::sec5::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.2,
+    "trace": {
+     "sub_questions": [
+      "Do they test against the large version of RoBERTa?"
+     ],
+     "resolved": [
+      "Do they test against the large version of RoBERTa?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1092,
+     "output_tokens": 50,
+     "cost_usd": 0.001342,
+     "live_cost_usd": 0.001342,
+     "stage_latency_s": {
+      "decompose": 0.6993816671893001,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04835612513124943,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1379437502473593
+     }
+    }
+   },
+   {
+    "qid": "9ce90f4132b34a328fa49a63e897f376a3ad3ca8",
+    "retrieved": [
+     "qa::1909.00871::sec12::c0",
+     "qa::1909.00871::sec0::c0",
+     "qa::1910.07973::sec2::c0",
+     "qa::1804.09692::sec2::c1",
+     "qa::1910.07973::sec2::c4"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Which tasks quantify embedding quality?"
+     ],
+     "resolved": [
+      "Which tasks quantify embedding quality?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.7196324998512864,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.016469332855194807,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.3505526250228286
+     }
+    }
+   },
+   {
+    "qid": "aebd1f0d728d0de5f76238844da044a44109f76f",
+    "retrieved": [
+     "qa::1911.04474::sec1::c3",
+     "qa::1803.02155::sec1::c1",
+     "qa::1803.02155::sec0::c0",
+     "qa::1911.04474::sec0::c0",
+     "qa::1803.02155::sec10::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How do transformers incorporate direction and relative distance in attention?"
+     ],
+     "resolved": [
+      "How do transformers incorporate direction and relative distance in attention?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1089,
+     "output_tokens": 48,
+     "cost_usd": 0.001329,
+     "live_cost_usd": 0.001329,
+     "stage_latency_s": {
+      "decompose": 0.8800181658007205,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.05351329129189253,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.5503347907215357
+     }
+    }
+   },
+   {
+    "qid": "4137a82d7752be7a6c142ceb48ce784fd475fb06",
+    "retrieved": [
+     "qa::1811.01183::sec8::c2",
+     "qa::1809.03680::sec8::c0",
+     "qa::1803.06745::sec6::c0",
+     "qa::1909.03553::sec4::c2",
+     "qa::2002.09616::sec12::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "what was the baseline?"
+     ],
+     "resolved": [
+      "what was the baseline?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1083,
+     "output_tokens": 41,
+     "cost_usd": 0.001288,
+     "live_cost_usd": 0.001288,
+     "stage_latency_s": {
+      "decompose": 0.6368650407530367,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.014989625196903944,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1061117080971599
+     }
+    }
+   },
+   {
+    "qid": "82f8843b59668567bba09fc8f93963ca7d1fe107",
+    "retrieved": [
+     "qa::1909.04251::sec2::c2",
+     "qa::1911.01770::sec1::c3",
+     "qa::1709.06365::sec9::c0",
+     "qa::2002.04326::sec2::c0",
+     "qa::1909.04251::sec2::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What is the size of the introduced dataset?"
+     ],
+     "resolved": [
+      "What is the size of the introduced dataset?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.7624434577301145,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.029061583802103996,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1224223747849464
+     }
+    }
+   },
+   {
+    "qid": "b569827ecd04ae8757dc3c9523ab97e3f47a6e00",
+    "retrieved": [
+     "qa::1911.11899::sec0::c1",
+     "qa::1911.11899::sec7::c1",
+     "qa::1911.11899::sec22::c0",
+     "qa::1911.11899::sec1::c4",
+     "qa::1911.11899::sec1::c2"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.5,
+    "trace": {
+     "sub_questions": [
+      "Is their gating mechanism specially designed to handle one sentence bags?"
+     ],
+     "resolved": [
+      "Is their gating mechanism specially designed to handle one sentence bags?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1091,
+     "output_tokens": 49,
+     "cost_usd": 0.001336,
+     "live_cost_usd": 0.001336,
+     "stage_latency_s": {
+      "decompose": 0.708062875084579,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.032898707780987024,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.3911140421405435
+     }
+    }
+   },
+   {
+    "qid": "d147117ef24217c43252d917d45dff6e66ff807c",
+    "retrieved": [
+     "qa::1803.08419::sec6::c5",
+     "qa::1803.08419::sec6::c6",
+     "qa::1712.00733::sec10::c1",
+     "qa::1908.11664::sec14::c0",
+     "qa::1909.05190::sec1::c3"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How do they model external knowledge?"
+     ],
+     "resolved": [
+      "How do they model external knowledge?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.716095665935427,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.027596499770879745,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.0049627083353698
+     }
+    }
+   },
+   {
+    "qid": "31cba86bc45970337ba035ecf36d8954a9a5206a",
+    "retrieved": [
+     "qa::2003.09244::sec15::c1",
+     "qa::2003.09244::sec7::c1",
+     "qa::2003.09244::sec1::c1",
+     "qa::2003.09244::sec0::c0",
+     "qa::2003.09244::sec7::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.5,
+    "trace": {
+     "sub_questions": [
+      "What private companies are members of consortium?"
+     ],
+     "resolved": [
+      "What private companies are members of consortium?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.6890094168484211,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.029413499869406223,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.0915126660838723
+     }
+    }
+   },
+   {
+    "qid": "0b10cfa61595b21bf3ff13b4df0fe1c17bbbf4e9",
+    "retrieved": [
+     "qa::1907.01339::sec2::c1",
+     "qa::1908.07721::sec22::c0",
+     "qa::1908.07721::sec5::c0",
+     "qa::1909.05190::sec2::c0",
+     "qa::1909.00369::sec8::c2"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "How do they perform the joint training?"
+     ],
+     "resolved": [
+      "How do they perform the joint training?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1086,
+     "output_tokens": 44,
+     "cost_usd": 0.001306,
+     "live_cost_usd": 0.001306,
+     "stage_latency_s": {
+      "decompose": 0.6664567501284182,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.025757458992302418,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.0302779581397772
+     }
+    }
+   },
+   {
+    "qid": "3d5b4aa1ce99903b1fcd257c1e394f7990431d13",
+    "retrieved": [
+     "qa::1810.13414::sec15::c0",
+     "qa::1909.08250::sec12::c1",
+     "qa::1909.08250::sec8::c0",
+     "qa::1909.08250::sec1::c3",
+     "qa::2003.13016::sec5::c1"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What ontologies did they use?"
+     ],
+     "resolved": [
+      "What ontologies did they use?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.7156273745931685,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.022355999797582626,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.175065207760781
+     }
+    }
+   },
+   {
+    "qid": "d7e43a3db8616a106304ac04ba729c1fee78761d",
+    "retrieved": [
+     "qa::1903.10318::sec0::c0",
+     "qa::1911.00202::sec2::c2",
+     "qa::1605.05166::sec8::c2",
+     "qa::1908.02284::sec10::c1",
+     "qa::1603.09405::sec14::c1"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "What system is being referred to?",
+      "What previous tasks is the system being compared to?",
+      "By how much did {1} outperform {2}?"
+     ],
+     "resolved": [
+      "What system is being referred to?",
+      "What previous tasks is the system being compared to?",
+      "By how much did Clinical decision-support system (CDSS) outperform the persuasion task?"
+     ],
+     "intermediate_answers": {
+      "1": "Clinical decision-support system (CDSS)",
+      "2": "the persuasion task"
+     },
+     "n_candidates": 138,
+     "llm_calls": 3,
+     "input_tokens": 5039,
+     "output_tokens": 211,
+     "cost_usd": 0.0060940000000000005,
+     "live_cost_usd": 0.003684,
+     "stage_latency_s": {
+      "decompose": 0.9805393749848008,
+      "intermediate_answer": 1.9645942919887602,
+      "retrieval": 0.09746495820581913,
+      "intermediate_rerank": 2.382107083220035,
+      "final_rerank": 1.2531492500565946
+     }
+    }
+   },
+   {
+    "qid": "d976c22e9d068e4e31fb46e929023459f8290a63",
+    "retrieved": [
+     "qa::1903.10548::sec4::c0",
+     "qa::1912.11980::sec17::c0",
+     "qa::1905.10039::sec8::c0",
+     "qa::1905.10039::sec8::c1",
+     "qa::1909.08250::sec3::c1"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Are the two paragraphs encoded independently?"
+     ],
+     "resolved": [
+      "Are the two paragraphs encoded independently?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.7216571671888232,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.02593454159796238,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.4714074172079563
+     }
+    }
+   },
+   {
+    "qid": "9b868c7d17852f46a8fe725f24cb9548fdbd2b05",
+    "retrieved": [
+     "qa::1903.02930::sec6::c0",
+     "qa::1912.11980::sec13::c0",
+     "qa::1701.03578::sec9::c3",
+     "qa::1906.01076::sec8::c1",
+     "qa::1912.11585::sec2::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What dataset was used for training?"
+     ],
+     "resolved": [
+      "What dataset was used for training?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.6594945844262838,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03793933289125562,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.1650585420429707
+     }
+    }
+   },
+   {
+    "qid": "e831ce6c406bf5d1c493162732e1b320abb71b6f",
+    "retrieved": [
+     "qa::1906.01076::sec2::c0",
+     "qa::1911.09247::sec1::c1",
+     "qa::1911.09247::sec0::c0",
+     "qa::1804.01155::sec4::c0",
+     "qa::1901.05389::sec4::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Where does their dataset come from?"
+     ],
+     "resolved": [
+      "Where does their dataset come from?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1085,
+     "output_tokens": 43,
+     "cost_usd": 0.0013,
+     "live_cost_usd": 0.0013,
+     "stage_latency_s": {
+      "decompose": 0.6547872093506157,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03765449998900294,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9932605833746493
+     }
+    }
+   },
+   {
+    "qid": "74cc0300e22f60232812019011a09df92bbec803",
+    "retrieved": [
+     "qa::1606.02601::sec11::c0",
+     "qa::1909.10481::sec23::c0",
+     "qa::1905.00472::sec11::c1",
+     "qa::2004.00809::sec4::c1",
+     "qa::2004.02105::sec9::c0"
+    ],
+    "recall": 0.0,
+    "complete_recall": 0.0,
+    "mrr": 0.0,
+    "trace": {
+     "sub_questions": [
+      "Do they report results only on English data?"
+     ],
+     "resolved": [
+      "Do they report results only on English data?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1087,
+     "output_tokens": 45,
+     "cost_usd": 0.001312,
+     "live_cost_usd": 0.001312,
+     "stage_latency_s": {
+      "decompose": 0.689975084271282,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.01821266720071435,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.4977897498756647
+     }
+    }
+   }
+  ]
+ }
+}
