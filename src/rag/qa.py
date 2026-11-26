@@ -15,14 +15,10 @@ from pathlib import Path
 from typing import Any
 
 from .generate import generate_answer
-from .llm import LLM
+from .llm import LLM, BudgetExceeded
 from .metrics import bootstrap_ci
 from .qa_metrics import score_answer
 from .schema import Chunk, Question, read_jsonl, write_jsonl
-
-
-class BudgetExceeded(RuntimeError):
-    pass
 
 
 def percentile(values: list[float], p: float) -> float:

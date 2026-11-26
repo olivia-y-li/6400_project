@@ -10,6 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import os
+import threading
 import time
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,6 +19,26 @@ from typing import Any
 MODEL = "claude-haiku-4-5"
 # (input, output) USD per million tokens. Check against the current pricing page.
 PRICES_PER_MTOK = {"claude-haiku-4-5": (1.00, 5.00)}
+
+
+# Hard ceiling on total live spend across ALL runs (USD): the prepaid credit minus a margin
+# for any difference between this arithmetic and the real bill.
+LIFETIME_CAP_USD = 33.0
+# Worst-case cost reserved for a call before it is made, so parallel workers cannot overshoot.
+CALL_RESERVE_USD = 0.01
+
+
+class BudgetExceeded(RuntimeError):
+    pass
+
+
+def cache_spend(cache_dir: str | Path = "data/llm_cache") -> float:
+    """Total cost of every live call ever made, recomputed from the tokens stored in the cache."""
+    total = 0.0
+    for f in Path(cache_dir).glob("*.json"):
+        d = json.loads(f.read_text())
+        total += cost_usd(d.get("model", MODEL), d["input_tokens"], d["output_tokens"])
+    return total
 
 
 def load_dotenv(path: str | Path = ".env") -> None:
@@ -49,10 +70,14 @@ class LLMResult:
 
 class LLM:
     def __init__(self, client: Any = None, cache_dir: str | Path = "data/llm_cache",
-                 model: str = MODEL, max_tokens: int = 300) -> None:
+                 model: str = MODEL, max_tokens: int = 300,
+                 spend_cap_usd: float = LIFETIME_CAP_USD) -> None:
         self._client = client
         self.cache_dir = Path(cache_dir)
         self.model, self.max_tokens = model, max_tokens
+        self.spend_cap_usd = spend_cap_usd
+        self._lock = threading.Lock()
+        self._spent = cache_spend(self.cache_dir)  # everything spent so far, plus this session
         if model not in PRICES_PER_MTOK:
             raise ValueError(f"no price recorded for {model!r}; add it to PRICES_PER_MTOK")
 
@@ -79,22 +104,44 @@ class LLM:
                              cost_usd(self.model, d["input_tokens"], d["output_tokens"]),
                              d["latency_s"], cached=True)
 
+        with self._lock:  # reserve the worst case first; refuse if it could pass the cap
+            if self._spent + CALL_RESERVE_USD > self.spend_cap_usd:
+                raise BudgetExceeded(
+                    f"spend ${self._spent:.2f} is within ${CALL_RESERVE_USD:.2f} of the "
+                    f"${self.spend_cap_usd:.2f} lifetime cap")
+            self._spent += CALL_RESERVE_USD
         start = time.perf_counter()
-        resp = self.client.messages.create(
+        try:
+            resp = self._create(system, user, tool)
+        except BaseException:
+            with self._lock:
+                self._spent -= CALL_RESERVE_USD  # nothing was billed for a failed request
+            raise
+        latency = time.perf_counter() - start
+        blocks = [b for b in resp.content if getattr(b, "type", None) == "tool_use"]
+        n_in, n_out = resp.usage.input_tokens, resp.usage.output_tokens
+        with self._lock:  # a response was billed even if its content turns out to be unusable
+            self._spent += cost_usd(self.model, n_in, n_out) - CALL_RESERVE_USD
+        if not blocks:
+            raise RuntimeError(f"no tool_use block in response (stop_reason={resp.stop_reason})")
+        out = dict(blocks[0].input)
+        return self._store(path, out, n_in, n_out, latency)
+
+    def _create(self, system: str, user: str, tool: dict):
+        return self.client.messages.create(
             model=self.model, max_tokens=self.max_tokens,
             system=system, messages=[{"role": "user", "content": user}],
             tools=[tool], tool_choice={"type": "tool", "name": tool["name"]},
         )
-        latency = time.perf_counter() - start
-        blocks = [b for b in resp.content if getattr(b, "type", None) == "tool_use"]
-        if not blocks:
-            raise RuntimeError(f"no tool_use block in response (stop_reason={resp.stop_reason})")
-        out = dict(blocks[0].input)
-        n_in, n_out = resp.usage.input_tokens, resp.usage.output_tokens
 
+    def _store(self, path: Path, out: dict, n_in: int, n_out: int, latency: float) -> LLMResult:
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         tmp = path.with_suffix(f".{os.getpid()}.{time.time_ns()}.tmp")
         tmp.write_text(json.dumps({"output": out, "input_tokens": n_in, "output_tokens": n_out,
                                    "latency_s": latency, "model": self.model}))
         tmp.replace(path)  # atomic, so concurrent workers never read a half-written entry
         return LLMResult(out, n_in, n_out, cost_usd(self.model, n_in, n_out), latency, cached=False)
+
+
+if __name__ == "__main__":
+    print(f"total live spend so far: ${cache_spend():.4f} (lifetime cap ${LIFETIME_CAP_USD:.2f})")

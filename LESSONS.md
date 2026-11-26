@@ -91,3 +91,23 @@ spending, and prepaid credits had to be added separately.
 On the 50 QASPER dev questions (hybrid + rerank), 22% of answers cite a gold chunk versus 98%
 on HotpotQA, and answer F1 is 0.33 versus 0.54. Citations track retrieval: the model cites what
 it was given, and the pooled corpus often hides the right paragraph.
+
+## 2026-11-25: First eval run left some answers uncited; prompt revised again
+The first 4-system eval (500 questions per benchmark) cost $9.16, but 2-12% of answers had no
+valid citation (HotpotQA BM25 92.6% cited, QASPER dense 87.4%). Almost all uncited answers were
+refusals ("The passages do not contain...", "<UNKNOWN>") that scored about 0 F1, and they were
+concentrated in the weaker retrievers where the evidence was missing. The design requires every
+answer to name its supporting chunks, so the prompt now says to always cite at least one
+passage (the closest, if unsure), and the output schema requires `minItems: 1`. On 50 dev
+questions each, valid-citation rate went to 100% for BM25 on HotpotQA and dense on QASPER, so
+the fix works; the model still writes a refusal as the answer text in about 20% of those weak
+cases, but it now cites a passage with it. The old-prompt results are kept under `qa_old_prompt/`
+and the whole eval was rerun with the new prompt, since all systems must share one prompt.
+
+## 2026-11-25: Hard spend cap inside the LLM wrapper
+Prepaid credit is limited, so `LLM` now enforces a lifetime cap ($33 of $35 credit) itself:
+before every live call it reserves a worst-case $0.01 under a lock, and refuses once total spend
+(recomputed from every token count in the cache, plus this session) would pass the cap. Cached
+calls are free and never blocked. Per-run `--max-cost` flags sit on top of this. `python -m
+rag.llm` prints the running total. One gap: a billed response with no usable tool call is not
+cached, so it is not in the ledger; the $2 margin covers that.

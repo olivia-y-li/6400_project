@@ -118,3 +118,60 @@ def test_run_qa_stops_at_budget(tmp_path):
     llm = LLM(client=FakeClient(), cache_dir=tmp_path / "cache")
     s = run_qa(data, report, "hybrid", "dev", tmp_path / "out", llm, workers=1, max_cost=0.002)
     assert s["error"] and "cap" in s["error"] and 0 < s["n_scored"] < 6
+
+
+def test_cache_spend_totals_every_stored_call(tmp_path):
+    from rag.llm import cache_spend
+
+    assert cache_spend(tmp_path / "missing") == 0.0
+    llm = LLM(client=FakeClient(), cache_dir=tmp_path)
+    generate_answer(llm, "A?", [chunk("c1")])
+    generate_answer(llm, "B?", [chunk("c1")])
+    assert cache_spend(tmp_path) == pytest.approx(2 * 0.00125)
+    assert LLM(client=FakeClient(), cache_dir=tmp_path)._spent == pytest.approx(2 * 0.00125)  # new session sees it
+
+
+def test_lifetime_cap_blocks_live_calls_but_not_cached_ones(tmp_path):
+    from rag.llm import BudgetExceeded
+
+    client = FakeClient()
+    llm = LLM(client=client, cache_dir=tmp_path, spend_cap_usd=0.0)
+    with pytest.raises(BudgetExceeded):
+        generate_answer(llm, "Q?", [chunk("c1")])
+    assert client.calls == []  # refused before any request was made
+
+    cap = 0.02 + 0.00125  # room for exactly one more call after the 0.01 reserve is held
+    llm = LLM(client=client, cache_dir=tmp_path, spend_cap_usd=cap)
+    generate_answer(llm, "Q?", [chunk("c1")])
+    assert len(client.calls) == 1
+    generate_answer(llm, "Q?", [chunk("c1")])  # cached: free, allowed even at the cap
+    assert len(client.calls) == 1
+
+
+def test_cap_holds_with_parallel_workers(tmp_path):
+    from concurrent.futures import ThreadPoolExecutor
+
+    from rag.llm import BudgetExceeded
+
+    client = FakeClient()
+    llm = LLM(client=client, cache_dir=tmp_path, spend_cap_usd=0.05)
+
+    def go(i):
+        try:
+            generate_answer(llm, f"Question {i}?", [chunk("c1")])
+            return True
+        except BudgetExceeded:
+            return False
+
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        ok = list(pool.map(go, range(40)))
+    spent = sum(0.00125 for _ in range(len(client.calls)))
+    assert spent <= 0.05 and sum(ok) == len(client.calls) < 40
+
+
+def test_failed_request_releases_its_reserve(tmp_path):
+    llm = LLM(client=FakeClient(fail=True), cache_dir=tmp_path, spend_cap_usd=1.0)
+    before = llm._spent
+    with pytest.raises(RuntimeError):
+        generate_answer(llm, "Q?", [chunk("c1")])
+    assert llm._spent == pytest.approx(before + 0.000006)  # only the billed 1 input + 1 output token

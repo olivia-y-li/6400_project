@@ -17,10 +17,11 @@ Rules:
 asks for. No full sentence, no explanation, no qualifiers, and no parenthetical remarks.
 - Copy the wording used in the passages for that answer where you can.
 - For a yes/no question, answer exactly "Yes" or "No".
-- Always commit to your single best answer. Never say the passages do not contain the answer; \
-if they are unclear, give the most likely answer from the closest passage.
-- Put the chunk IDs of every passage your answer relies on in the citations field, copied \
-exactly as written. Do not put citations in the answer text.
+- Always commit to your single best answer. Never say the passages do not contain the answer and \
+never write "unknown"; if they are unclear, give the most likely answer from the closest passage.
+- Always cite at least one passage: put the chunk IDs of every passage your answer relies on, or \
+the closest one if you are unsure, in the citations field, copied exactly as written. Do not put \
+citations in the answer text.
 - Reply only by calling the answer_question tool."""
 
 
@@ -41,7 +42,8 @@ def answer_tool(chunk_ids: Sequence[str]) -> dict:
                 "citations": {
                     "type": "array",
                     "items": {"type": "string", "enum": list(chunk_ids)},
-                    "description": "chunk_ids of the passages the answer relies on.",
+                    "minItems": 1,
+                    "description": "chunk_ids of the passages the answer relies on; at least one.",
                 },
             },
             "required": ["answer", "citations"],
