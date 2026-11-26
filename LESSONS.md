@@ -111,3 +111,28 @@ before every live call it reserves a worst-case $0.01 under a lock, and refuses 
 calls are free and never blocked. Per-run `--max-cost` flags sit on top of this. `python -m
 rag.llm` prints the running total. One gap: a billed response with no usable tool call is not
 cached, so it is not in the ledger; the $2 margin covers that.
+
+## 2026-11-25: Decomposition is a null result for retrieval, and a small gain for answers
+Final eval, Hybrid + Rerank -> + Decomposition (500 questions each):
+- HotpotQA: Complete Recall@5 0.662 -> 0.666 (p = 0.71), Recall@5 0.831 -> 0.833, MRR unchanged.
+  Decomposition ran on 82.8% of questions (1.69 LLM calls per question) but changed the top-5
+  chunk set for only 66 of 500; on the other 434 the retrieved chunks and the answers are
+  identical. Answer F1 0.644 -> 0.657 (paired +0.013, p = 0.021); the whole gain is on the 66
+  changed questions (F1 0.537 -> 0.631). Complete Recall was better on 9 questions and worse on 7.
+- QASPER: nothing moves (Complete Recall 0.250 -> 0.248, F1 0.271 -> 0.274, both p > 0.4).
+  Decomposition ran on only 15.4% of questions, and where it ran it often introduced a wrong
+  bridge entity (for example "they" resolved to "humans" or to an unrelated clinical system).
+- Likely reason retrieval barely moves: the final rerank scores against the ORIGINAL question,
+  so sub-question candidates only displace the plain hybrid top-5 when they outscore it.
+  The `--include-original` ablation (also pool the undecomposed question) was not run.
+- Decomposition prompt revised once on dev: later sub-questions used "these actors" instead of
+  the {n} placeholder, and QASPER questions with pronouns were split into "what does 'they'
+  refer to" sub-questions. After the change QASPER dev decomposition fell from 32% to 6% of
+  questions and 35 of 44 decomposed HotpotQA dev questions had a bridge answer filled in.
+- Design choice recorded: intermediate answers are produced from hybrid + rerank on the
+  sub-question (top 5), not from plain hybrid.
+
+## 2026-11-25: Total API spend
+All generation and decomposition runs cost $21.56 in total (ledger from `python -m rag.llm`),
+of which $9.16 went on a first 4-system eval that had to be rerun for the citation fix. Unused
+results from that run are kept under `results/<benchmark>/qa_old_prompt/`.

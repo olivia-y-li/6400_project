@@ -1,0 +1,1983 @@
+{
+ "system": "hybrid_rerank_decomp",
+ "k": 5,
+ "min_overlap": 0.5,
+ "include_original": false,
+ "error": null,
+ "results": {
+  "hybrid_rerank_decomp/dev": {
+   "recall": 0.7733333333333333,
+   "complete_recall": 0.54,
+   "mrr": 0.975,
+   "ci95": {
+    "recall": [
+     0.6967,
+     0.84
+    ],
+    "complete_recall": [
+     0.4,
+     0.66
+    ],
+    "mrr": [
+     0.935,
+     1.0
+    ]
+   },
+   "failures": {
+    "complete": 27,
+    "partial": 23,
+    "miss": 0
+   },
+   "by_qtype": {
+    "bridge": {
+     "recall": 0.7166666666666667,
+     "complete_recall": 0.425,
+     "mrr": 0.96875,
+     "n": 40
+    },
+    "comparison": {
+     "recall": 1.0,
+     "complete_recall": 1.0,
+     "mrr": 1.0,
+     "n": 10
+    }
+   },
+   "n_scored": 50,
+   "n_expected": 50,
+   "trace_totals": {
+    "mean_llm_calls": 1.78,
+    "mean_sub_questions": 1.98,
+    "pct_decomposed": 88.0,
+    "mean_candidates": 89.56,
+    "total_cost_usd": 0.156032,
+    "mean_cost_usd": 0.00312064
+   }
+  }
+ },
+ "per_question": {
+  "hybrid_rerank_decomp/dev": [
+   {
+    "qid": "5ac11139554299294b219083",
+    "retrieved": [
+     "hp::Tony Bellew::sec0::c0",
+     "hp::Shinsuke Yamanaka::sec0::c0",
+     "hp::Keith Thurman::sec0::c0",
+     "hp::Katsunari Takayama::sec0::c0",
+     "hp::Grigory Drozd::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is the boxer featured in the film Creed?",
+      "What WBC title did {1} hold from 2016 to 2017?"
+     ],
+     "resolved": [
+      "Who is the boxer featured in the film Creed?",
+      "What WBC title did Tony Bellew hold from 2016 to 2017?"
+     ],
+     "intermediate_answers": {
+      "1": "Tony Bellew"
+     },
+     "n_candidates": 86,
+     "llm_calls": 2,
+     "input_tokens": 3051,
+     "output_tokens": 151,
+     "cost_usd": 0.003806,
+     "live_cost_usd": 0.003806,
+     "stage_latency_s": {
+      "decompose": 2.362412333022803,
+      "intermediate_answer": 0.9746597083285451,
+      "retrieval": 0.04960641684010625,
+      "intermediate_rerank": 1.6988773751072586,
+      "final_rerank": 1.0551809160970151
+     }
+    }
+   },
+   {
+    "qid": "5a7b782455429927d897bfd7",
+    "retrieved": [
+     "hp::Staten Island Summer::sec0::c0",
+     "hp::Cecily Strong::sec0::c0",
+     "hp::Ellen Cleghorne::sec0::c0",
+     "hp::Garrett Morris::sec0::c0",
+     "hp::List of Saturday Night Live episodes::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who starred in Staten Island Summer?",
+      "Which of {1} was a cast member of Saturday Night Live?"
+     ],
+     "resolved": [
+      "Who starred in Staten Island Summer?",
+      "Which of Graham Phillips, Zack Pearlman, John DeLuca, Bobby Moynihan, Will Forte, Fred Armisen, Cecily Strong, and Ashley Greene was a cast member of Saturday Night Live?"
+     ],
+     "intermediate_answers": {
+      "1": "Graham Phillips, Zack Pearlman, John DeLuca, Bobby Moynihan, Will Forte, Fred Armisen, Cecily Strong, and Ashley Greene"
+     },
+     "n_candidates": 96,
+     "llm_calls": 2,
+     "input_tokens": 2967,
+     "output_tokens": 159,
+     "cost_usd": 0.003762,
+     "live_cost_usd": 0.003762,
+     "stage_latency_s": {
+      "decompose": 2.8109724172390997,
+      "intermediate_answer": 1.1240662499330938,
+      "retrieval": 0.04121862491592765,
+      "intermediate_rerank": 1.2849945416674018,
+      "final_rerank": 1.1237946660257876
+     }
+    }
+   },
+   {
+    "qid": "5add2eab5542992ae4cec4da",
+    "retrieved": [
+     "hp::Destined to Love You::sec0::c0",
+     "hp::Jia Nailiang::sec0::c0",
+     "hp::Fated to Love You (2008 TV series)::sec0::c0",
+     "hp::Ying Ye 3 Jia 1::sec0::c0",
+     "hp::Dad is Back::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who are the main actors that costarred with Joe Chen and Jia Nailiang in 'Destined to Love You'?",
+      "What is the nationality of {1}?"
+     ],
+     "resolved": [
+      "Who are the main actors that costarred with Joe Chen and Jia Nailiang in 'Destined to Love You'?",
+      "What is the nationality of Bosco Wong?"
+     ],
+     "intermediate_answers": {
+      "1": "Bosco Wong"
+     },
+     "n_candidates": 90,
+     "llm_calls": 2,
+     "input_tokens": 2824,
+     "output_tokens": 146,
+     "cost_usd": 0.003554,
+     "live_cost_usd": 0.003554,
+     "stage_latency_s": {
+      "decompose": 2.4610935421660542,
+      "intermediate_answer": 5.939540749881417,
+      "retrieval": 0.040556666906923056,
+      "intermediate_rerank": 1.7254192498512566,
+      "final_rerank": 1.5473034591414034
+     }
+    }
+   },
+   {
+    "qid": "5a8db9b3554299068b959dde",
+    "retrieved": [
+     "hp::Mahratta Greyhound::sec0::c0",
+     "hp::Tibetan Spaniel::sec0::c0",
+     "hp::Sussex Spaniel::sec0::c0",
+     "hp::Kiang::sec0::c0",
+     "hp::German Spaniel::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What animal is Mahratta Greyhound?",
+      "What animal is Tibetan Spaniel?"
+     ],
+     "resolved": [
+      "What animal is Mahratta Greyhound?",
+      "What animal is Tibetan Spaniel?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 67,
+     "llm_calls": 1,
+     "input_tokens": 1100,
+     "output_tokens": 60,
+     "cost_usd": 0.0014,
+     "live_cost_usd": 0.0014,
+     "stage_latency_s": {
+      "decompose": 2.343849416822195,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.04051208309829235,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.8131450838409364
+     }
+    }
+   },
+   {
+    "qid": "5a7730015542994aec3b7210",
+    "retrieved": [
+     "hp::SpongeBob SquarePants (season 3)::sec0::c0",
+     "hp::List of SpongeBob SquarePants episodes::sec0::c0",
+     "hp::Legends of Bikini Bottom::sec0::c0",
+     "hp::SpongeBob SquarePants::sec0::c0",
+     "hp::SpongeBob SquarePants (season 4)::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 0.25,
+    "trace": {
+     "sub_questions": [
+      "Who are the creators of Robocalypse?",
+      "Which TV series set in Bikini Bottom was created by {1}?"
+     ],
+     "resolved": [
+      "Who are the creators of Robocalypse?",
+      "Which TV series set in Bikini Bottom was created by Jay Lender and Micah Wright?"
+     ],
+     "intermediate_answers": {
+      "1": "Jay Lender and Micah Wright"
+     },
+     "n_candidates": 96,
+     "llm_calls": 2,
+     "input_tokens": 2767,
+     "output_tokens": 137,
+     "cost_usd": 0.003452,
+     "live_cost_usd": 0.001426,
+     "stage_latency_s": {
+      "decompose": 6.3993773753754795,
+      "intermediate_answer": 1.0209002080373466,
+      "retrieval": 0.043048832565546036,
+      "intermediate_rerank": 0.7509426660835743,
+      "final_rerank": 1.9424940422177315
+     }
+    }
+   },
+   {
+    "qid": "5a81141855429938b61422ad",
+    "retrieved": [
+     "hp::2006 San Marino Grand Prix::sec0::c0",
+     "hp::2001 San Marino Grand Prix::sec0::c0",
+     "hp::2005 San Marino Grand Prix::sec0::c0",
+     "hp::San Marino Grand Prix::sec0::c0",
+     "hp::1987 San Marino Grand Prix::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who finished in third place at the 2006 San Marino Grand Prix?",
+      "What team does {1} currently compete with?"
+     ],
+     "resolved": [
+      "Who finished in third place at the 2006 San Marino Grand Prix?",
+      "What team does Juan Pablo Montoya currently compete with?"
+     ],
+     "intermediate_answers": {
+      "1": "Juan Pablo Montoya"
+     },
+     "n_candidates": 97,
+     "llm_calls": 2,
+     "input_tokens": 3019,
+     "output_tokens": 136,
+     "cost_usd": 0.003699,
+     "live_cost_usd": 0.001425,
+     "stage_latency_s": {
+      "decompose": 0.9046419588848948,
+      "intermediate_answer": 0.9202702501788735,
+      "retrieval": 0.04498029127717018,
+      "intermediate_rerank": 0.4411896248348057,
+      "final_rerank": 0.6731622503139079
+     }
+    }
+   },
+   {
+    "qid": "5ae0b7cf554299603e418446",
+    "retrieved": [
+     "hp::Can de Palleiro::sec0::c0",
+     "hp::Bullenbeisser::sec0::c0",
+     "hp::Villano de las Encartaciones::sec0::c0",
+     "hp::Boxer (dog)::sec0::c0",
+     "hp::Magellan sheep dog::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Where did the Bullenbeisser dog originate?",
+      "Where did the Can de Palleiro dog originate?"
+     ],
+     "resolved": [
+      "Where did the Bullenbeisser dog originate?",
+      "Where did the Can de Palleiro dog originate?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 67,
+     "llm_calls": 1,
+     "input_tokens": 1100,
+     "output_tokens": 63,
+     "cost_usd": 0.001415,
+     "live_cost_usd": 0.001415,
+     "stage_latency_s": {
+      "decompose": 0.8594619580544531,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.0245509990490973,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.6636180002242327
+     }
+    }
+   },
+   {
+    "qid": "5ab2bc6b554299545a2cfa40",
+    "retrieved": [
+     "hp::Pablo Ozuna::sec0::c0",
+     "hp::Marcell Ozuna::sec0::c0",
+     "hp::Jefry Mart\u00e9::sec0::c0",
+     "hp::Carlos Peguero::sec0::c0",
+     "hp::Alfonso Soriano::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is Pablo Jose Ozuna's cousin who is a Dominican professional baseball left fielder?",
+      "What year did {1} make his MLB debut?"
+     ],
+     "resolved": [
+      "Who is Pablo Jose Ozuna's cousin who is a Dominican professional baseball left fielder?",
+      "What year did Marcell Ozuna make his MLB debut?"
+     ],
+     "intermediate_answers": {
+      "1": "Marcell Ozuna"
+     },
+     "n_candidates": 85,
+     "llm_calls": 2,
+     "input_tokens": 2694,
+     "output_tokens": 136,
+     "cost_usd": 0.0033740000000000003,
+     "live_cost_usd": 0.001443,
+     "stage_latency_s": {
+      "decompose": 0.9236889169551432,
+      "intermediate_answer": 0.9108658330515027,
+      "retrieval": 0.04826245829463005,
+      "intermediate_rerank": 0.46387012489140034,
+      "final_rerank": 1.1498792497441173
+     }
+    }
+   },
+   {
+    "qid": "5ae7922f5542994a481bbdac",
+    "retrieved": [
+     "hp::Barrie Ciliberti::sec0::c0",
+     "hp::Barrie Wilson::sec0::c0",
+     "hp::Barrie Thorne::sec0::c0",
+     "hp::Barrie Rickards::sec0::c0",
+     "hp::Barrie Pettman::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Where was Barrie Ciliberti a professor?",
+      "Where was {1} located?"
+     ],
+     "resolved": [
+      "Where was Barrie Ciliberti a professor?",
+      "Where was University of Maryland University College located?"
+     ],
+     "intermediate_answers": {
+      "1": "University of Maryland University College"
+     },
+     "n_candidates": 93,
+     "llm_calls": 2,
+     "input_tokens": 2631,
+     "output_tokens": 127,
+     "cost_usd": 0.003266,
+     "live_cost_usd": 0.001383,
+     "stage_latency_s": {
+      "decompose": 0.7871283330023289,
+      "intermediate_answer": 0.8773280410096049,
+      "retrieval": 0.030191791709512472,
+      "intermediate_rerank": 0.5700009581632912,
+      "final_rerank": 1.413407334126532
+     }
+    }
+   },
+   {
+    "qid": "5ae361d15542990afbd1e126",
+    "retrieved": [
+     "hp::It's De-Lovely::sec0::c0",
+     "hp::Let's Misbehave::sec0::c0",
+     "hp::Anything Goes (1936 film)::sec0::c1",
+     "hp::Anything Goes (Cole Porter song)::sec0::c0",
+     "hp::Anything Goes (soundtrack)::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who sang 'It's a De-Lovely' in the 1962 revival of 'Anything Goes'?",
+      "What is the original surname of {1}?"
+     ],
+     "resolved": [
+      "Who sang 'It's a De-Lovely' in the 1962 revival of 'Anything Goes'?",
+      "What is the original surname of Hal Linden and Barbara Lang?"
+     ],
+     "intermediate_answers": {
+      "1": "Hal Linden and Barbara Lang"
+     },
+     "n_candidates": 99,
+     "llm_calls": 2,
+     "input_tokens": 3124,
+     "output_tokens": 147,
+     "cost_usd": 0.003859,
+     "live_cost_usd": 0.001486,
+     "stage_latency_s": {
+      "decompose": 0.914195166900754,
+      "intermediate_answer": 0.9333008746616542,
+      "retrieval": 0.05198512505739927,
+      "intermediate_rerank": 1.0356355840340257,
+      "final_rerank": 2.276379957795143
+     }
+    }
+   },
+   {
+    "qid": "5a77b6c85542992a6e59df96",
+    "retrieved": [
+     "hp::Max West (1920s outfielder)::sec0::c0",
+     "hp::Overton Tremper::sec0::c0",
+     "hp::Fred Johnston::sec0::c0",
+     "hp::Jack Sheehan (baseball)::sec0::c0",
+     "hp::Chuck Corgan::sec0::c0"
+    ],
+    "recall": 0.6666666666666666,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which professional baseball player played for the Brooklyn Robbins in 1928 and 1929?",
+      "Which of {1} attended college in Denton, Texas?"
+     ],
+     "resolved": [
+      "Which professional baseball player played for the Brooklyn Robbins in 1928 and 1929?",
+      "Which of Walter Maxwell West Sr. attended college in Denton, Texas?"
+     ],
+     "intermediate_answers": {
+      "1": "Walter Maxwell West Sr."
+     },
+     "n_candidates": 91,
+     "llm_calls": 2,
+     "input_tokens": 2693,
+     "output_tokens": 145,
+     "cost_usd": 0.003418,
+     "live_cost_usd": 0.001474,
+     "stage_latency_s": {
+      "decompose": 1.0363632082007825,
+      "intermediate_answer": 0.9408633327111602,
+      "retrieval": 0.055909082759171724,
+      "intermediate_rerank": 1.0430152923800051,
+      "final_rerank": 1.8436838341876864
+     }
+    }
+   },
+   {
+    "qid": "5a74547755429979e2882900",
+    "retrieved": [
+     "hp::Kevin Sumlin::sec0::c0",
+     "hp::K. C. Keeler::sec0::c0",
+     "hp::Willie Fritz::sec0::c0",
+     "hp::Ernest T. Jones::sec0::c0",
+     "hp::Butch Davis::sec0::c0"
+    ],
+    "recall": 0.3333333333333333,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who was the head football coach at the University of Houston from 2007 to 2011?",
+      "Which football team does {1} currently coach?"
+     ],
+     "resolved": [
+      "Who was the head football coach at the University of Houston from 2007 to 2011?",
+      "Which football team does Kevin Sumlin currently coach?"
+     ],
+     "intermediate_answers": {
+      "1": "Kevin Sumlin"
+     },
+     "n_candidates": 68,
+     "llm_calls": 2,
+     "input_tokens": 2953,
+     "output_tokens": 135,
+     "cost_usd": 0.003628,
+     "live_cost_usd": 0.001452,
+     "stage_latency_s": {
+      "decompose": 0.8855063747614622,
+      "intermediate_answer": 0.9284876668825746,
+      "retrieval": 0.06022541597485542,
+      "intermediate_rerank": 1.1713263331912458,
+      "final_rerank": 1.3150780838914216
+     }
+    }
+   },
+   {
+    "qid": "5adf1c3f5542993a75d263ec",
+    "retrieved": [
+     "hp::Celtic nations::sec0::c0",
+     "hp::Insular Celtic languages::sec0::c0",
+     "hp::Continental Celtic languages::sec0::c0",
+     "hp::Celtic art::sec0::c0",
+     "hp::Celtic studies::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "In which six Western European territories have Celtic languages or cultural traits survived?"
+     ],
+     "resolved": [
+      "In which six Western European territories have Celtic languages or cultural traits survived?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1092,
+     "output_tokens": 50,
+     "cost_usd": 0.001342,
+     "live_cost_usd": 0.001342,
+     "stage_latency_s": {
+      "decompose": 0.8703932077623904,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.028741041664034128,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9381364579312503
+     }
+    }
+   },
+   {
+    "qid": "5adec53655429975fa854f87",
+    "retrieved": [
+     "hp::Kim Dong-jun::sec0::c0",
+     "hp::Charlie Harper (singer)::sec0::c0",
+     "hp::Kim Dong-jun (footballer)::sec0::c0",
+     "hp::Black (TV series)::sec0::c0",
+     "hp::Kim Ryeowook discography::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Is Kim Dong-jun a singer?",
+      "Is Charlie Harper a singer?"
+     ],
+     "resolved": [
+      "Is Kim Dong-jun a singer?",
+      "Is Charlie Harper a singer?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 95,
+     "llm_calls": 1,
+     "input_tokens": 1090,
+     "output_tokens": 53,
+     "cost_usd": 0.001355,
+     "live_cost_usd": 0.001355,
+     "stage_latency_s": {
+      "decompose": 0.7879609577357769,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.035623375326395035,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9268976249732077
+     }
+    }
+   },
+   {
+    "qid": "5a73f4f75542993a88ae2ebc",
+    "retrieved": [
+     "hp::Yoo Seung-ho::sec0::c0",
+     "hp::Brady Corbet::sec0::c0",
+     "hp::Missing You (2013 TV series)::sec0::c0",
+     "hp::Bill Pullman::sec0::c0",
+     "hp::Grace Claxton::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is the Missing You actor born on August 17, 1993?"
+     ],
+     "resolved": [
+      "Who is the Missing You actor born on August 17, 1993?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1091,
+     "output_tokens": 52,
+     "cost_usd": 0.001351,
+     "live_cost_usd": 0.001351,
+     "stage_latency_s": {
+      "decompose": 0.73542270809412,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.01567591680213809,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.43363945884630084
+     }
+    }
+   },
+   {
+    "qid": "5a83c9e45542992ef85e2361",
+    "retrieved": [
+     "hp::Benn F. Reyes::sec0::c0",
+     "hp::Dr. Strangelove::sec0::c0",
+     "hp::Hawk Films::sec0::c0",
+     "hp::Red Alert (novel)::sec0::c0",
+     "hp::The Magic Christian (novel)::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What is the film Dr. Strangelove?",
+      "What type of film is {1}?"
+     ],
+     "resolved": [
+      "What is the film Dr. Strangelove?",
+      "What type of film is a 1964 political satire black comedy film that satirizes the Cold War fears of a nuclear conflict between the Soviet Union and the United States?"
+     ],
+     "intermediate_answers": {
+      "1": "a 1964 political satire black comedy film that satirizes the Cold War fears of a nuclear conflict between the Soviet Union and the United States"
+     },
+     "n_candidates": 92,
+     "llm_calls": 2,
+     "input_tokens": 2836,
+     "output_tokens": 152,
+     "cost_usd": 0.0035960000000000002,
+     "live_cost_usd": 0.0035960000000000002,
+     "stage_latency_s": {
+      "decompose": 0.8976842081174254,
+      "intermediate_answer": 1.1990589168854058,
+      "retrieval": 0.07222516601905227,
+      "intermediate_rerank": 0.6694713337346911,
+      "final_rerank": 1.6355207497254014
+     }
+    }
+   },
+   {
+    "qid": "5a714bb35542994082a3e78f",
+    "retrieved": [
+     "hp::Gaetano Donizetti::sec0::c0",
+     "hp::William Walton::sec0::c0",
+     "hp::Gaetano Rossi::sec0::c0",
+     "hp::Le duc d'Albe::sec0::c0",
+     "hp::Eugenio Cavallini::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "When was Gaetano Donizetti born?",
+      "When was William Walton born?"
+     ],
+     "resolved": [
+      "When was Gaetano Donizetti born?",
+      "When was William Walton born?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 96,
+     "llm_calls": 1,
+     "input_tokens": 1098,
+     "output_tokens": 58,
+     "cost_usd": 0.001388,
+     "live_cost_usd": 0.001388,
+     "stage_latency_s": {
+      "decompose": 0.8726236247457564,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.036575875245034695,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9205067921429873
+     }
+    }
+   },
+   {
+    "qid": "5a84c0765542991dd0999dd9",
+    "retrieved": [
+     "hp::Set the Fire to the Third Bar::sec0::c0",
+     "hp::Laura Jean::sec0::c0",
+     "hp::Rita Redshoes::sec0::c0",
+     "hp::World on Fire World Tour::sec0::c0",
+     "hp::World on Fire (Slash song)::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who was the main vocal of \"Set the Fire to the Third Bar\"?"
+     ],
+     "resolved": [
+      "Who was the main vocal of \"Set the Fire to the Third Bar\"?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1094,
+     "output_tokens": 52,
+     "cost_usd": 0.001354,
+     "live_cost_usd": 0.001354,
+     "stage_latency_s": {
+      "decompose": 0.7549182083457708,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.016737665981054306,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.36437750002369285
+     }
+    }
+   },
+   {
+    "qid": "5ade04465542990dbb2f7f2f",
+    "retrieved": [
+     "hp::Nadeem Siddique::sec0::c0",
+     "hp::Nadeem\u2013Shravan::sec0::c0",
+     "hp::Muhammad Waseem::sec0::c0",
+     "hp::Meri Ladli::sec0::c0",
+     "hp::Michael Carbajal::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is Nadeem Siddique's favorite boxer?",
+      "What is the birth name of {1}?"
+     ],
+     "resolved": [
+      "Who is Nadeem Siddique's favorite boxer?",
+      "What is the birth name of Sugar Ray Robinson?"
+     ],
+     "intermediate_answers": {
+      "1": "Sugar Ray Robinson"
+     },
+     "n_candidates": 98,
+     "llm_calls": 2,
+     "input_tokens": 2621,
+     "output_tokens": 129,
+     "cost_usd": 0.003266,
+     "live_cost_usd": 0.0014,
+     "stage_latency_s": {
+      "decompose": 0.8009047079831362,
+      "intermediate_answer": 0.9401295841671526,
+      "retrieval": 0.023305832874029875,
+      "intermediate_rerank": 0.35606020828709006,
+      "final_rerank": 1.6623727078549564
+     }
+    }
+   },
+   {
+    "qid": "5add1d575542992c1e3a2540",
+    "retrieved": [
+     "hp::Royal Flash (film)::sec0::c0",
+     "hp::Oliver Reed::sec0::c0",
+     "hp::Ivan Dragomiloff::sec0::c0",
+     "hp::Lion of the Desert::sec0::c0",
+     "hp::Royal Flash::sec0::c0"
+    ],
+    "recall": 0.6666666666666666,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What character did Oliver Reed play in the film Royal Flash?",
+      "What nationality was {1}?"
+     ],
+     "resolved": [
+      "What character did Oliver Reed play in the film Royal Flash?",
+      "What nationality was Otto von Bismarck?"
+     ],
+     "intermediate_answers": {
+      "1": "Otto von Bismarck"
+     },
+     "n_candidates": 99,
+     "llm_calls": 2,
+     "input_tokens": 2868,
+     "output_tokens": 126,
+     "cost_usd": 0.0034980000000000002,
+     "live_cost_usd": 0.0034980000000000002,
+     "stage_latency_s": {
+      "decompose": 0.9125975002534688,
+      "intermediate_answer": 0.8888978329487145,
+      "retrieval": 0.056354083586484194,
+      "intermediate_rerank": 1.244580457918346,
+      "final_rerank": 1.8349817502312362
+     }
+    }
+   },
+   {
+    "qid": "5a7cb9b95542990527d55515",
+    "retrieved": [
+     "hp::Making Today a Perfect Day::sec0::c0",
+     "hp::Perfect Day (Cascada album)::sec0::c0",
+     "hp::Perfect Day (Jim Jones song)::sec0::c0",
+     "hp::One Perfect Day (Lydia Denker song)::sec0::c0",
+     "hp::A Perfect Day (song)::sec0::c0"
+    ],
+    "recall": 0.3333333333333333,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What year was 'Making Today a Perfect Day' produced?",
+      "What year was 'Frozen' produced?",
+      "Which year is earlier, {1} or {2}?"
+     ],
+     "resolved": [
+      "What year was 'Making Today a Perfect Day' produced?",
+      "What year was 'Frozen' produced?",
+      "Which year is earlier, 2015 or 2013?"
+     ],
+     "intermediate_answers": {
+      "1": "2015",
+      "2": "2013"
+     },
+     "n_candidates": 139,
+     "llm_calls": 3,
+     "input_tokens": 4682,
+     "output_tokens": 205,
+     "cost_usd": 0.005707,
+     "live_cost_usd": 0.001484,
+     "stage_latency_s": {
+      "decompose": 0.9491022918373346,
+      "intermediate_answer": 1.743876582942903,
+      "retrieval": 0.055123708210885525,
+      "intermediate_rerank": 1.4628082076087594,
+      "final_rerank": 2.0997644579038024
+     }
+    }
+   },
+   {
+    "qid": "5abe86365542993f32c2a14d",
+    "retrieved": [
+     "hp::Joel H. Cohen::sec0::c0",
+     "hp::Robert Cohen (writer)::sec0::c0",
+     "hp::Revenge Is a Dish Best Served Three Times::sec0::c0",
+     "hp::Yellow Subterfuge::sec0::c0",
+     "hp::Clown in the Dumps::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is Joel H. Cohen's older brother who was a one-time Simpsons writer?",
+      "Which other shows has {1} written for?"
+     ],
+     "resolved": [
+      "Who is Joel H. Cohen's older brother who was a one-time Simpsons writer?",
+      "Which other shows has Robert Cohen written for?"
+     ],
+     "intermediate_answers": {
+      "1": "Robert Cohen"
+     },
+     "n_candidates": 89,
+     "llm_calls": 2,
+     "input_tokens": 2881,
+     "output_tokens": 133,
+     "cost_usd": 0.0035459999999999997,
+     "live_cost_usd": 0.0035459999999999997,
+     "stage_latency_s": {
+      "decompose": 0.9996670000255108,
+      "intermediate_answer": 0.842266374733299,
+      "retrieval": 0.05515416665002704,
+      "intermediate_rerank": 1.2086817920207977,
+      "final_rerank": 1.369667542167008
+     }
+    }
+   },
+   {
+    "qid": "5ae164cf5542997b2ef7d1cd",
+    "retrieved": [
+     "hp::I'm Shipping Up to Boston::sec0::c0",
+     "hp::Dropkick Murphys::sec0::c0",
+     "hp::Mermaid Avenue::sec0::c0",
+     "hp::Thinking of Woody Guthrie::sec0::c0",
+     "hp::Willis Alan Ramsey (album)::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What album is called 'The Warrior's Code'?",
+      "What platinum selling track on {1} has lyrics by Woody Guthrie?"
+     ],
+     "resolved": [
+      "What album is called 'The Warrior's Code'?",
+      "What platinum selling track on The Warrior's Code has lyrics by Woody Guthrie?"
+     ],
+     "intermediate_answers": {
+      "1": "The Warrior's Code"
+     },
+     "n_candidates": 86,
+     "llm_calls": 2,
+     "input_tokens": 3029,
+     "output_tokens": 157,
+     "cost_usd": 0.0038139999999999997,
+     "live_cost_usd": 0.0038139999999999997,
+     "stage_latency_s": {
+      "decompose": 0.8642980000004172,
+      "intermediate_answer": 1.0327785420231521,
+      "retrieval": 0.04250874975696206,
+      "intermediate_rerank": 1.1540307076647878,
+      "final_rerank": 1.6058436669409275
+     }
+    }
+   },
+   {
+    "qid": "5a7ddd565542997cc2c474b2",
+    "retrieved": [
+     "hp::Mary O'Connell::sec0::c0",
+     "hp::Nightingale's environmental theory::sec0::c0",
+     "hp::Florence Nightingale::sec0::c0",
+     "hp::Harriet Patience Dame::sec0::c0",
+     "hp::Sheila Blumstein::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is known as the founder of nursing?",
+      "What portrait hangs in the Smithsonian Institution with {1}?"
+     ],
+     "resolved": [
+      "Who is known as the founder of nursing?",
+      "What portrait hangs in the Smithsonian Institution with Florence Nightingale?"
+     ],
+     "intermediate_answers": {
+      "1": "Florence Nightingale"
+     },
+     "n_candidates": 93,
+     "llm_calls": 2,
+     "input_tokens": 2802,
+     "output_tokens": 131,
+     "cost_usd": 0.003457,
+     "live_cost_usd": 0.001415,
+     "stage_latency_s": {
+      "decompose": 0.8948481660336256,
+      "intermediate_answer": 1.0035668751224875,
+      "retrieval": 0.04388845758512616,
+      "intermediate_rerank": 0.9862393331713974,
+      "final_rerank": 1.370920917019248
+     }
+    }
+   },
+   {
+    "qid": "5ab6f17d5542995eadef00ee",
+    "retrieved": [
+     "hp::Alex Yemenidjian::sec0::c0",
+     "hp::Sheldon Adelson::sec0::c0",
+     "hp::SLS Las Vegas::sec0::c0",
+     "hp::Corey I. Sanders::sec0::c0",
+     "hp::Tropicana Las Vegas::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What company is Alex Yemenidjian the CEO of?",
+      "What Las Vegas Strip hotel does {1} own?"
+     ],
+     "resolved": [
+      "What company is Alex Yemenidjian the CEO of?",
+      "What Las Vegas Strip hotel does The New Tropicana Las Vegas, Inc. and Armenco Holdings, LLC own?"
+     ],
+     "intermediate_answers": {
+      "1": "The New Tropicana Las Vegas, Inc. and Armenco Holdings, LLC"
+     },
+     "n_candidates": 97,
+     "llm_calls": 2,
+     "input_tokens": 2936,
+     "output_tokens": 146,
+     "cost_usd": 0.003666,
+     "live_cost_usd": 0.001414,
+     "stage_latency_s": {
+      "decompose": 1.0136449593119323,
+      "intermediate_answer": 1.2958226660266519,
+      "retrieval": 0.04748045792803168,
+      "intermediate_rerank": 0.9806075831875205,
+      "final_rerank": 1.375488749705255
+     }
+    }
+   },
+   {
+    "qid": "5ab82bbb5542990e739ec84c",
+    "retrieved": [
+     "hp::Babiana::sec0::c0",
+     "hp::Ceratophyllum::sec0::c0",
+     "hp::Ceratophyllum echinatum::sec0::c0",
+     "hp::Montsechia::sec0::c0",
+     "hp::Cyrtandra (plant)::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "How many species does Babiana have?",
+      "How many species does Ceratophyllum have?"
+     ],
+     "resolved": [
+      "How many species does Babiana have?",
+      "How many species does Ceratophyllum have?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 67,
+     "llm_calls": 1,
+     "input_tokens": 1094,
+     "output_tokens": 59,
+     "cost_usd": 0.001389,
+     "live_cost_usd": 0.001389,
+     "stage_latency_s": {
+      "decompose": 0.8619066253304482,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.032369416672736406,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9223552909679711
+     }
+    }
+   },
+   {
+    "qid": "5a7a73e45542996c55b2ddb6",
+    "retrieved": [
+     "hp::Evan Buliung::sec0::c0",
+     "hp::Eric Northman::sec0::c0",
+     "hp::Cersei Lannister::sec0::c0",
+     "hp::Evan Almighty::sec0::c0",
+     "hp::Tara Chambler::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What character named Aragon did Evan Buliung play?",
+      "What book series is {1} based on?",
+      "Who is the author of {2}?"
+     ],
+     "resolved": [
+      "What character named Aragon did Evan Buliung play?",
+      "What book series is Aragorn in the Toronto production of \"Lord of the Rings\" based on?",
+      "Who is the author of J. R. R. Tolkien's epic high fantasy book series?"
+     ],
+     "intermediate_answers": {
+      "1": "Aragorn in the Toronto production of \"Lord of the Rings\"",
+      "2": "J. R. R. Tolkien's epic high fantasy book series"
+     },
+     "n_candidates": 131,
+     "llm_calls": 3,
+     "input_tokens": 4690,
+     "output_tokens": 250,
+     "cost_usd": 0.005940000000000001,
+     "live_cost_usd": 0.005940000000000001,
+     "stage_latency_s": {
+      "decompose": 1.0542731252498925,
+      "intermediate_answer": 2.1398238344118,
+      "retrieval": 0.0847582914866507,
+      "intermediate_rerank": 1.1568508315831423,
+      "final_rerank": 2.1816308749839664
+     }
+    }
+   },
+   {
+    "qid": "5ae34a225542992e3233c370",
+    "retrieved": [
+     "hp::Eug\u00e8ne Ionesco::sec0::c0",
+     "hp::Victims of Duty::sec0::c0",
+     "hp::Paul Scott (novelist)::sec0::c0",
+     "hp::The Lesson::sec0::c0",
+     "hp::The Killer (play)::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "When did playwright Eug\u00e8ne Ionesco live (birth and death years)?",
+      "When did Paul Scott live (birth and death years)?"
+     ],
+     "resolved": [
+      "When did playwright Eug\u00e8ne Ionesco live (birth and death years)?",
+      "When did Paul Scott live (birth and death years)?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 86,
+     "llm_calls": 1,
+     "input_tokens": 1100,
+     "output_tokens": 65,
+     "cost_usd": 0.001425,
+     "live_cost_usd": 0.001425,
+     "stage_latency_s": {
+      "decompose": 0.8745496249757707,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.02808716520667076,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.8658759579993784
+     }
+    }
+   },
+   {
+    "qid": "5ae3df6e5542992e3233c48e",
+    "retrieved": [
+     "hp::Indian Mound Cottage::sec0::c0",
+     "hp::Rockefeller Cottage::sec0::c0",
+     "hp::Indian Mound Cemetery::sec0::c0",
+     "hp::Indian Mound Park (Dauphin Island, Alabama)::sec0::c0",
+     "hp::Portavant Mound::sec0::c0"
+    ],
+    "recall": 0.3333333333333333,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who owned Indian Mound Cottage?",
+      "Which company did {1} co-found?"
+     ],
+     "resolved": [
+      "Who owned Indian Mound Cottage?",
+      "Which company did William Rockefeller co-found?"
+     ],
+     "intermediate_answers": {
+      "1": "William Rockefeller"
+     },
+     "n_candidates": 96,
+     "llm_calls": 2,
+     "input_tokens": 3046,
+     "output_tokens": 126,
+     "cost_usd": 0.003676,
+     "live_cost_usd": 0.003676,
+     "stage_latency_s": {
+      "decompose": 0.8361254162155092,
+      "intermediate_answer": 0.8593157501891255,
+      "retrieval": 0.019942292012274265,
+      "intermediate_rerank": 0.5037950831465423,
+      "final_rerank": 1.1639124578796327
+     }
+    }
+   },
+   {
+    "qid": "5a7774e155429967ab10518d",
+    "retrieved": [
+     "hp::Return to Never Land::sec0::c0",
+     "hp::McFarland, USA::sec0::c0",
+     "hp::Peter Pan: Adventures in Never Land::sec0::c0",
+     "hp::Jake and the Never Land Pirates::sec0::c0",
+     "hp::List of Jake and the Never Land Pirates episodes::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which studio produced Return to Never Land?",
+      "Which studio produced McFarland, USA?",
+      "Which studio appears in both {1} and {2}?"
+     ],
+     "resolved": [
+      "Which studio produced Return to Never Land?",
+      "Which studio produced McFarland, USA?",
+      "Which studio appears in both Walt Disney Television Animation and Walt Disney Pictures and Mayhem Pictures?"
+     ],
+     "intermediate_answers": {
+      "1": "Walt Disney Television Animation",
+      "2": "Walt Disney Pictures and Mayhem Pictures"
+     },
+     "n_candidates": 132,
+     "llm_calls": 3,
+     "input_tokens": 4780,
+     "output_tokens": 209,
+     "cost_usd": 0.005825,
+     "live_cost_usd": 0.005825,
+     "stage_latency_s": {
+      "decompose": 1.0383836668916047,
+      "intermediate_answer": 1.8180674174800515,
+      "retrieval": 0.05746258422732353,
+      "intermediate_rerank": 1.5856002080254257,
+      "final_rerank": 1.6392715000547469
+     }
+    }
+   },
+   {
+    "qid": "5adfbca255429942ec259b2c",
+    "retrieved": [
+     "hp::All Join Hands::sec0::c0",
+     "hp::Join Hands::sec0::c0",
+     "hp::Playground Twist::sec0::c0",
+     "hp::Crackers: The Christmas Party Album::sec0::c0",
+     "hp::Slade::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which rock band sang 'All Join Hands'?",
+      "When did {1} rise to prominence?"
+     ],
+     "resolved": [
+      "Which rock band sang 'All Join Hands'?",
+      "When did Slade rise to prominence?"
+     ],
+     "intermediate_answers": {
+      "1": "Slade"
+     },
+     "n_candidates": 95,
+     "llm_calls": 2,
+     "input_tokens": 2829,
+     "output_tokens": 124,
+     "cost_usd": 0.003449,
+     "live_cost_usd": 0.001391,
+     "stage_latency_s": {
+      "decompose": 0.7951396671123803,
+      "intermediate_answer": 0.8500776668079197,
+      "retrieval": 0.027728000655770302,
+      "intermediate_rerank": 0.7598792919889092,
+      "final_rerank": 1.4592539160512388
+     }
+    }
+   },
+   {
+    "qid": "5ae0aaf455429945ae959401",
+    "retrieved": [
+     "hp::Chris Williams (English footballer)::sec0::c0",
+     "hp::Jack Truelove::sec0::c0",
+     "hp::National League North::sec0::c0",
+     "hp::Salford City F.C.::sec0::c0",
+     "hp::Rory Kostjasyn::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is Chris Williams and what is his football career history?",
+      "Which of the clubs Chris Williams played for competes in the National League North?"
+     ],
+     "resolved": [
+      "Who is Chris Williams and what is his football career history?",
+      "Which of the clubs Chris Williams played for competes in the National League North?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 91,
+     "llm_calls": 1,
+     "input_tokens": 1092,
+     "output_tokens": 66,
+     "cost_usd": 0.001422,
+     "live_cost_usd": 0.001422,
+     "stage_latency_s": {
+      "decompose": 0.9971970412880182,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.05769912479445338,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.436141291167587
+     }
+    }
+   },
+   {
+    "qid": "5ade3af855429939a52fe867",
+    "retrieved": [
+     "hp::In the Library with the Lead Pipe::sec0::c0",
+     "hp::EBSCO Information Services::sec0::c0",
+     "hp::Journal of Private Enterprise::sec0::c0",
+     "hp::The Journal of Entrepreneurial Finance::sec0::c0",
+     "hp::Teaching Mathematics and Its Applications::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What is the third largest private company in Birmingham, Alabama?",
+      "Does {1} abstract and index the academic journal 'In the Library with the Lead Pipe'?"
+     ],
+     "resolved": [
+      "What is the third largest private company in Birmingham, Alabama?",
+      "Does EBSCO Industries Inc. abstract and index the academic journal 'In the Library with the Lead Pipe'?"
+     ],
+     "intermediate_answers": {
+      "1": "EBSCO Industries Inc."
+     },
+     "n_candidates": 93,
+     "llm_calls": 2,
+     "input_tokens": 3087,
+     "output_tokens": 142,
+     "cost_usd": 0.003797,
+     "live_cost_usd": 0.003797,
+     "stage_latency_s": {
+      "decompose": 0.778124624863267,
+      "intermediate_answer": 0.9371428326703608,
+      "retrieval": 0.05321300029754639,
+      "intermediate_rerank": 0.759351666085422,
+      "final_rerank": 1.4833150003105402
+     }
+    }
+   },
+   {
+    "qid": "5a8d02cc554299441c6b9fb6",
+    "retrieved": [
+     "hp::John MacGregor, Baron MacGregor of Pulham Market::sec0::c0",
+     "hp::John MacGregor (VC)::sec0::c0",
+     "hp::John MacGregor::sec0::c0",
+     "hp::University of St Andrews::sec0::c0",
+     "hp::Pulham Market::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which universities did John MacGregor, Baron MacGregor of Pulham Market attend?",
+      "Which of these universities was not the University of St Andrews?",
+      "Which monarch established {2}?"
+     ],
+     "resolved": [
+      "Which universities did John MacGregor, Baron MacGregor of Pulham Market attend?",
+      "Which of these universities was not the University of St Andrews?",
+      "Which monarch established King's College London?"
+     ],
+     "intermediate_answers": {
+      "2": "King's College London"
+     },
+     "n_candidates": 129,
+     "llm_calls": 2,
+     "input_tokens": 3051,
+     "output_tokens": 154,
+     "cost_usd": 0.0038209999999999997,
+     "live_cost_usd": 0.0038209999999999997,
+     "stage_latency_s": {
+      "decompose": 1.064445875119418,
+      "intermediate_answer": 0.970470333006233,
+      "retrieval": 0.055046082474291325,
+      "intermediate_rerank": 0.5126957078464329,
+      "final_rerank": 2.1972710001282394
+     }
+    }
+   },
+   {
+    "qid": "5a8a59c955429930ff3c0da6",
+    "retrieved": [
+     "hp::Maximilian B\u00fcsser::sec0::c0",
+     "hp::Harry Winston, Inc.::sec0::c0",
+     "hp::Maximilian Riedel::sec0::c0",
+     "hp::Invicta Watch Group::sec0::c0",
+     "hp::Hardy Brothers::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What company did Maximilian B\u00fcsser serve as CEO of?",
+      "From which country does the company {1} produce timepieces?"
+     ],
+     "resolved": [
+      "What company did Maximilian B\u00fcsser serve as CEO of?",
+      "From which country does the company Harry Winston, Inc. Rare Timepieces produce timepieces?"
+     ],
+     "intermediate_answers": {
+      "1": "Harry Winston, Inc. Rare Timepieces"
+     },
+     "n_candidates": 96,
+     "llm_calls": 2,
+     "input_tokens": 2751,
+     "output_tokens": 143,
+     "cost_usd": 0.003466,
+     "live_cost_usd": 0.003466,
+     "stage_latency_s": {
+      "decompose": 0.9079046249389648,
+      "intermediate_answer": 1.0592195419594646,
+      "retrieval": 0.048228958155959845,
+      "intermediate_rerank": 0.6111515420489013,
+      "final_rerank": 1.4430674579925835
+     }
+    }
+   },
+   {
+    "qid": "5a88a5645542997e5c09a679",
+    "retrieved": [
+     "hp::Personal Preference::sec0::c0",
+     "hp::Take It Easy (game)::sec0::c0",
+     "hp::Personal Taste::sec0::c0",
+     "hp::Urvasi Urvasi::sec0::c0",
+     "hp::The Sensuous Woman::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "When was Take It Easy published?",
+      "When was Personal Preference published?"
+     ],
+     "resolved": [
+      "When was Take It Easy published?",
+      "When was Personal Preference published?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 88,
+     "llm_calls": 1,
+     "input_tokens": 1091,
+     "output_tokens": 52,
+     "cost_usd": 0.001351,
+     "live_cost_usd": 0.001351,
+     "stage_latency_s": {
+      "decompose": 0.73951958399266,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.03673524968326092,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 1.3425193326547742
+     }
+    }
+   },
+   {
+    "qid": "5ae3f6775542991a06ce9a3f",
+    "retrieved": [
+     "hp::Jennifer Granholm::sec0::c0",
+     "hp::Ray Wert::sec0::c0",
+     "hp::Michigan gubernatorial election, 2006::sec0::c0",
+     "hp::Cool Cities Initiative::sec0::c0",
+     "hp::David Hollister::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What was Ray Wert's role or responsibility while Jennifer Granholm was Governor of Michigan from 2003-2011?"
+     ],
+     "resolved": [
+      "What was Ray Wert's role or responsibility while Jennifer Granholm was Governor of Michigan from 2003-2011?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1111,
+     "output_tokens": 63,
+     "cost_usd": 0.001426,
+     "live_cost_usd": 0.001426,
+     "stage_latency_s": {
+      "decompose": 0.8294452908448875,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.030511791817843914,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9852682501077652
+     }
+    }
+   },
+   {
+    "qid": "5a84b8555542991dd0999db2",
+    "retrieved": [
+     "hp::Nobody Speak: Trials of the Free Press::sec0::c0",
+     "hp::Kinston Free Press::sec0::c0",
+     "hp::Free Press (magazine)::sec0::c0",
+     "hp::Ben Scott (policy advisor)::sec0::c0",
+     "hp::Bard Free Press::sec0::c0"
+    ],
+    "recall": 0.6666666666666666,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who was the casino owner featured in the documentary Nobody Speak: Trials of the Free Press?",
+      "What is the nationality of {1}?"
+     ],
+     "resolved": [
+      "Who was the casino owner featured in the documentary Nobody Speak: Trials of the Free Press?",
+      "What is the nationality of Sheldon Adelson?"
+     ],
+     "intermediate_answers": {
+      "1": "Sheldon Adelson"
+     },
+     "n_candidates": 98,
+     "llm_calls": 2,
+     "input_tokens": 2899,
+     "output_tokens": 141,
+     "cost_usd": 0.0036039999999999996,
+     "live_cost_usd": 0.0036039999999999996,
+     "stage_latency_s": {
+      "decompose": 0.9096289998851717,
+      "intermediate_answer": 1.029786417260766,
+      "retrieval": 0.05505145760253072,
+      "intermediate_rerank": 0.9001933326944709,
+      "final_rerank": 1.264152083080262
+     }
+    }
+   },
+   {
+    "qid": "5ae3ac665542994393b9e73f",
+    "retrieved": [
+     "hp::Homosexual behavior in animals::sec0::c0",
+     "hp::Bisexuality::sec0::c0",
+     "hp::Extended female sexuality::sec0::c0",
+     "hp::Alternative mating strategy::sec0::c0",
+     "hp::The Evolution of Human Sexuality::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "In the animal kingdom, what type of sexuality is described as sexual behavior toward both males and females?"
+     ],
+     "resolved": [
+      "In the animal kingdom, what type of sexuality is described as sexual behavior toward both males and females?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1097,
+     "output_tokens": 56,
+     "cost_usd": 0.001377,
+     "live_cost_usd": 0.001377,
+     "stage_latency_s": {
+      "decompose": 0.8799718329682946,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.037341250106692314,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.3879794171079993
+     }
+    }
+   },
+   {
+    "qid": "5ab6087a554299110f2199be",
+    "retrieved": [
+     "hp::Chaplinsky v. New Hampshire::sec0::c0",
+     "hp::Korematsu v. United States::sec0::c0",
+     "hp::Ex parte Endo::sec0::c0",
+     "hp::Duncan v. Kahanamoku::sec0::c0",
+     "hp::Dale Minami::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What rights are at issue in Korematsu v. United States?",
+      "What rights are at issue in Chaplinsky v. New Hampshire?"
+     ],
+     "resolved": [
+      "What rights are at issue in Korematsu v. United States?",
+      "What rights are at issue in Chaplinsky v. New Hampshire?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 74,
+     "llm_calls": 1,
+     "input_tokens": 1107,
+     "output_tokens": 67,
+     "cost_usd": 0.001442,
+     "live_cost_usd": 0.001442,
+     "stage_latency_s": {
+      "decompose": 0.9752070000395179,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.029305332340300083,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9555295002646744
+     }
+    }
+   },
+   {
+    "qid": "5ae4bc7955429913cc2044e9",
+    "retrieved": [
+     "hp::Grace Claxton::sec0::c0",
+     "hp::Julio Sabater::sec0::c0",
+     "hp::Albany Great Danes::sec0::c0",
+     "hp::Jamele Mason::sec0::c0",
+     "hp::Puerto Rican Figure Skating Championships::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which Puerto Rican hurdler and sprinter attended the University at Albany, SUNY?",
+      "To which competition did {1} compete?"
+     ],
+     "resolved": [
+      "Which Puerto Rican hurdler and sprinter attended the University at Albany, SUNY?",
+      "To which competition did Grace Claxton compete?"
+     ],
+     "intermediate_answers": {
+      "1": "Grace Claxton"
+     },
+     "n_candidates": 99,
+     "llm_calls": 2,
+     "input_tokens": 2721,
+     "output_tokens": 148,
+     "cost_usd": 0.0034609999999999997,
+     "live_cost_usd": 0.0034609999999999997,
+     "stage_latency_s": {
+      "decompose": 0.8595172502100468,
+      "intermediate_answer": 0.8113305000588298,
+      "retrieval": 0.031140500213950872,
+      "intermediate_rerank": 0.5618945825845003,
+      "final_rerank": 1.0410075830295682
+     }
+    }
+   },
+   {
+    "qid": "5ab7c87d55429928e1fe38de",
+    "retrieved": [
+     "hp::The Last Command (album)::sec0::c0",
+     "hp::Inside the Electric Circus::sec0::c0",
+     "hp::Blackie Lawless::sec0::c0",
+     "hp::Live...In the Raw::sec0::c0",
+     "hp::Blizzard Beasts::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 0.5,
+    "trace": {
+     "sub_questions": [
+      "Which W.A.S.P. albums feature Steven Edward Duren on guitar?",
+      "What is the chronological order of W.A.S.P. albums, and what number album is {1}?"
+     ],
+     "resolved": [
+      "Which W.A.S.P. albums feature Steven Edward Duren on guitar?",
+      "What is the chronological order of W.A.S.P. albums, and what number album is Inside the Electric Circus?"
+     ],
+     "intermediate_answers": {
+      "1": "Inside the Electric Circus"
+     },
+     "n_candidates": 90,
+     "llm_calls": 2,
+     "input_tokens": 2963,
+     "output_tokens": 167,
+     "cost_usd": 0.003798,
+     "live_cost_usd": 0.003798,
+     "stage_latency_s": {
+      "decompose": 1.1008183332160115,
+      "intermediate_answer": 1.0262923329137266,
+      "retrieval": 0.050593916326761246,
+      "intermediate_rerank": 0.7910329583100975,
+      "final_rerank": 1.763045166619122
+     }
+    }
+   },
+   {
+    "qid": "5a7a4f335542990198eaf11e",
+    "retrieved": [
+     "hp::Kings of Convenience::sec0::c0",
+     "hp::Belle and Sebastian::sec0::c0",
+     "hp::Sebasti\u00e1n Abreu::sec0::c0",
+     "hp::Marla Adams::sec0::c0",
+     "hp::Lars Tolumnius::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Where is Kings of Convenience from?",
+      "Where is Belle and Sebastian from?",
+      "Which location is farther west, {1} or {2}?"
+     ],
+     "resolved": [
+      "Where is Kings of Convenience from?",
+      "Where is Belle and Sebastian from?",
+      "Which location is farther west, Bergen, Norway or Glasgow?"
+     ],
+     "intermediate_answers": {
+      "1": "Bergen, Norway",
+      "2": "Glasgow"
+     },
+     "n_candidates": 142,
+     "llm_calls": 3,
+     "input_tokens": 4706,
+     "output_tokens": 197,
+     "cost_usd": 0.005691,
+     "live_cost_usd": 0.005691,
+     "stage_latency_s": {
+      "decompose": 0.980581333860755,
+      "intermediate_answer": 1.858118126168847,
+      "retrieval": 0.08407825045287609,
+      "intermediate_rerank": 1.5682564172893763,
+      "final_rerank": 2.6415681247599423
+     }
+    }
+   },
+   {
+    "qid": "5adfc06d55429906c02daa2a",
+    "retrieved": [
+     "hp::Boston Harbor::sec0::c0",
+     "hp::Newark Bay::sec0::c0",
+     "hp::Transportation in Boston::sec0::c0",
+     "hp::Braves Field::sec0::c0",
+     "hp::Boston Red Sox::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Where do the Boston Red Sox play?",
+      "What is the name of the largest shipping facility in {1}?"
+     ],
+     "resolved": [
+      "Where do the Boston Red Sox play?",
+      "What is the name of the largest shipping facility in Fenway Park?"
+     ],
+     "intermediate_answers": {
+      "1": "Fenway Park"
+     },
+     "n_candidates": 92,
+     "llm_calls": 2,
+     "input_tokens": 3154,
+     "output_tokens": 125,
+     "cost_usd": 0.0037790000000000002,
+     "live_cost_usd": 0.001403,
+     "stage_latency_s": {
+      "decompose": 0.9406384998001158,
+      "intermediate_answer": 0.944153374992311,
+      "retrieval": 0.0415695421397686,
+      "intermediate_rerank": 0.42047062516212463,
+      "final_rerank": 1.6859845421276987
+     }
+    }
+   },
+   {
+    "qid": "5adfa6c7554299025d62a326",
+    "retrieved": [
+     "hp::Earl of Merioneth::sec0::c0",
+     "hp::Baron Harlech::sec0::c0",
+     "hp::James Stewart, 1st Earl of Moray (1501 creation)::sec0::c0",
+     "hp::Gerald David Lascelles::sec0::c0",
+     "hp::Pamela Dillon::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who is the Earl of Merioneth?",
+      "What is the birthday of {1}?"
+     ],
+     "resolved": [
+      "Who is the Earl of Merioneth?",
+      "What is the birthday of Philip Mountbatten?"
+     ],
+     "intermediate_answers": {
+      "1": "Philip Mountbatten"
+     },
+     "n_candidates": 96,
+     "llm_calls": 2,
+     "input_tokens": 3220,
+     "output_tokens": 126,
+     "cost_usd": 0.00385,
+     "live_cost_usd": 0.00385,
+     "stage_latency_s": {
+      "decompose": 0.8588592913001776,
+      "intermediate_answer": 1.004705083090812,
+      "retrieval": 0.08552754111588001,
+      "intermediate_rerank": 1.1246977499686182,
+      "final_rerank": 2.0512548331171274
+     }
+    }
+   },
+   {
+    "qid": "5a710a1e5542994082a3e4fd",
+    "retrieved": [
+     "hp::Yellow fever::sec0::c0",
+     "hp::Crimean\u2013Congo hemorrhagic fever::sec0::c0",
+     "hp::Rift Valley fever::sec0::c0",
+     "hp::West Nile fever::sec0::c0",
+     "hp::Influenza::sec0::c0"
+    ],
+    "recall": 0.6666666666666666,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What viral disease has symptoms such as fever, chills, loss of appetite, nausea, muscle pains, and headaches, and has a chance of causing liver damage?",
+      "What is the genus of {1}?"
+     ],
+     "resolved": [
+      "What viral disease has symptoms such as fever, chills, loss of appetite, nausea, muscle pains, and headaches, and has a chance of causing liver damage?",
+      "What is the genus of Yellow fever?"
+     ],
+     "intermediate_answers": {
+      "1": "Yellow fever"
+     },
+     "n_candidates": 89,
+     "llm_calls": 2,
+     "input_tokens": 3025,
+     "output_tokens": 146,
+     "cost_usd": 0.0037549999999999997,
+     "live_cost_usd": 0.0037549999999999997,
+     "stage_latency_s": {
+      "decompose": 0.85236483393237,
+      "intermediate_answer": 0.8974803751334548,
+      "retrieval": 0.10693416744470596,
+      "intermediate_rerank": 1.4638622500933707,
+      "final_rerank": 1.2320530419237912
+     }
+    }
+   },
+   {
+    "qid": "5add016e5542992c1e3a250b",
+    "retrieved": [
+     "hp::Gran i General Consell::sec0::c0",
+     "hp::Levan of Imereti::sec0::c0",
+     "hp::Line of succession to the former Romanian throne::sec0::c0",
+     "hp::Earl Cowper::sec0::c1",
+     "hp::Earl Cowper::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Who abolished the Consell in 1718?",
+      "What made {1} resume the throne?"
+     ],
+     "resolved": [
+      "Who abolished the Consell in 1718?",
+      "What made Philip V resume the throne?"
+     ],
+     "intermediate_answers": {
+      "1": "Philip V"
+     },
+     "n_candidates": 88,
+     "llm_calls": 2,
+     "input_tokens": 3106,
+     "output_tokens": 124,
+     "cost_usd": 0.003726,
+     "live_cost_usd": 0.001387,
+     "stage_latency_s": {
+      "decompose": 0.773244125302881,
+      "intermediate_answer": 0.8277703332714736,
+      "retrieval": 0.08500445820391178,
+      "intermediate_rerank": 1.3600147501565516,
+      "final_rerank": 1.4136560000479221
+     }
+    }
+   },
+   {
+    "qid": "5a76dc2d55429972597f13eb",
+    "retrieved": [
+     "hp::Now That's What I Call Music! 59 (U.S. series)::sec0::c0",
+     "hp::Now That's What I Call Music! 59 (UK series)::sec0::c0",
+     "hp::Now That's What I Call Music! 26 (U.S. series)::sec0::c0",
+     "hp::Now That's What I Call Music! 20 (UK series)::sec0::c0",
+     "hp::In a World Called Catastrophe::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "What songs are included on the 59th edition of Now That's What I Call Music?",
+      "Which of {1} were written and recorded by an Australian recording artist?"
+     ],
+     "resolved": [
+      "What songs are included on the 59th edition of Now That's What I Call Music?",
+      "Which of \"Can't Stop the Feeling!\" by Justin Timberlake, \"Cheap Thrills\" by Sia featuring Sean Paul, and \"Panda\" by Desiigner were written and recorded by an Australian recording artist?"
+     ],
+     "intermediate_answers": {
+      "1": "\"Can't Stop the Feeling!\" by Justin Timberlake, \"Cheap Thrills\" by Sia featuring Sean Paul, and \"Panda\" by Desiigner"
+     },
+     "n_candidates": 93,
+     "llm_calls": 2,
+     "input_tokens": 2824,
+     "output_tokens": 189,
+     "cost_usd": 0.0037689999999999998,
+     "live_cost_usd": 0.001465,
+     "stage_latency_s": {
+      "decompose": 1.0028638332150877,
+      "intermediate_answer": 1.2775814160704613,
+      "retrieval": 0.07663925038650632,
+      "intermediate_rerank": 0.8376171248964965,
+      "final_rerank": 1.4744267496280372
+     }
+    }
+   },
+   {
+    "qid": "5a71278c5542994082a3e5e2",
+    "retrieved": [
+     "hp::Danja (record producer)::sec0::c0",
+     "hp::Black Sheep (duo)::sec0::c0",
+     "hp::Daniel Boone Native Gardens::sec0::c0",
+     "hp::Music Maker (label)::sec0::c0",
+     "hp::Zion Williamson::sec0::c0"
+    ],
+    "recall": 0.5,
+    "complete_recall": 0.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which North Carolina native did Danja produce songs for?"
+     ],
+     "resolved": [
+      "Which North Carolina native did Danja produce songs for?"
+     ],
+     "intermediate_answers": {},
+     "n_candidates": 50,
+     "llm_calls": 1,
+     "input_tokens": 1090,
+     "output_tokens": 48,
+     "cost_usd": 0.00133,
+     "live_cost_usd": 0.00133,
+     "stage_latency_s": {
+      "decompose": 0.8531701252795756,
+      "intermediate_answer": 0.0,
+      "retrieval": 0.021112958900630474,
+      "intermediate_rerank": 0.0,
+      "final_rerank": 0.9457917078398168
+     }
+    }
+   },
+   {
+    "qid": "5a7b5af7554299042af8f752",
+    "retrieved": [
+     "hp::Data Universal Numbering System::sec0::c0",
+     "hp::Dun &amp; Bradstreet::sec0::c0",
+     "hp::Universal Numbering System::sec0::c0",
+     "hp::Calypso Ichthyological Database::sec0::c0",
+     "hp::Dental notation::sec0::c0"
+    ],
+    "recall": 1.0,
+    "complete_recall": 1.0,
+    "mrr": 1.0,
+    "trace": {
+     "sub_questions": [
+      "Which company created the Data Universal Numbering System?",
+      "How many business records does {1} have in its database?"
+     ],
+     "resolved": [
+      "Which company created the Data Universal Numbering System?",
+      "How many business records does Dun & Bradstreet have in its database?"
+     ],
+     "intermediate_answers": {
+      "1": "Dun & Bradstreet"
+     },
+     "n_candidates": 94,
+     "llm_calls": 2,
+     "input_tokens": 2820,
+     "output_tokens": 134,
+     "cost_usd": 0.00349,
+     "live_cost_usd": 0.001409,
+     "stage_latency_s": {
+      "decompose": 0.8463386669754982,
+      "intermediate_answer": 0.9350173752754927,
+      "retrieval": 0.03598995925858617,
+      "intermediate_rerank": 0.9238860830664635,
+      "final_rerank": 1.091339458245784
+     }
+    }
+   }
+  ]
+ }
+}
