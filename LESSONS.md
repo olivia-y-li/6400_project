@@ -64,3 +64,30 @@ advance and not tuned.
 - Cost: scoring 50 chunk pairs per question on CPU made the full report (both splits, four
   systems) take about 7 minutes per benchmark. Latency per stage is logged separately in the
   latency/cost step.
+
+## 2026-11-25: Generation cannot use temperature 0
+The design calls for Claude Haiku 4.5 at temperature 0. The Anthropic SDK (2.14) has no
+`temperature` argument, and sending one in the raw request body is rejected by the API
+(`temperature: Extra inputs are not permitted`). Sampling therefore uses the API default.
+Reproducibility comes from the on-disk response cache (keyed by a hash of model, prompt and
+tool schema): the first answer for a prompt is stored and every rerun replays it exactly.
+Consequence for the report: results are reproducible from the cache, but a fresh run with an
+empty cache could differ slightly. Decomposition uses the same client and cache.
+
+## 2026-11-25: Generation prompt revised once on the HotpotQA dev set
+First prompt (hybrid + rerank, 50 dev questions): EM 0.34, F1 0.52. Six answers said the
+passages did not contain the answer, and several added qualifiers or explanations. Revised the
+prompt to ask for only the answer span in the passages' own wording, with no parentheticals,
+and never to refuse. Same dev questions: EM 0.42, F1 0.54, five non-answers. Further tuning
+was stopped, since 50 questions would be overfit. The final prompt is shared by all systems
+and both benchmarks. Remaining misses are mostly missing evidence or metric noise
+("Switzerland" vs "Swiss", "Dogs" vs "dog").
+
+## 2026-11-25: An API spend limit is not a credit balance
+The first API call failed with "credit balance is too low": the monthly spend limit only caps
+spending, and prepaid credits had to be added separately.
+
+## 2026-11-25: QASPER dev answers cite gold evidence far less often
+On the 50 QASPER dev questions (hybrid + rerank), 22% of answers cite a gold chunk versus 98%
+on HotpotQA, and answer F1 is 0.33 versus 0.54. Citations track retrieval: the model cites what
+it was given, and the pooled corpus often hides the right paragraph.
