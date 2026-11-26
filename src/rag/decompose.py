@@ -29,7 +29,11 @@ the question. If the question is already simple, return it unchanged as a single
 {2} for the second, and so on. Use a placeholder only when the later question truly cannot be \\
 asked without that answer.
 - For a comparison of several things, ask one sub-question per thing; they need no placeholders.
-- Each sub-question must be self-contained: include the names and terms needed to search for it.
+- Each sub-question must be self-contained: include the names and terms needed to search for it. \
+Never write "these", "this", "they" or "it" to point at an earlier answer; use {1}, {2} instead.
+- Only split when the question needs several separate facts. Never write a sub-question that asks \
+what a pronoun or phrase such as "they", "it" or "this dataset" refers to; keep such a question as \
+it is.
 - Do not answer the questions.
 - Reply only by calling the decompose_question tool.
 
